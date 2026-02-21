@@ -4,17 +4,26 @@
 
 /* CSS Variables for Easy Theme Management */
 :root {
-    --navy-dark: #0f1c2e;
-    --navy-medium: #1a2b3f;
-    --navy-light: #2d4059;
-    --slate: #3d5a80;
-    --gold: #d4a574;
-    --gold-light: #e8c4a0;
-    --cream: #f7f4ed;
+    /* Forest Green & Orange Theme - Evolved from Original Upstate AI Brand */
+    --forest-dark: #1a3a2e;
+    --forest-medium: #2d5745;
+    --forest-light: #3f7054;
+    --forest-accent: #5a8f6e;
+    --orange: #ff6900;
+    --orange-light: #ff8c3a;
+    --cream: #f4f1e1;
     --white: #ffffff;
     --text-dark: #1a1a1a;
     --text-light: #f0f0f0;
     --text-muted: #a0a0a0;
+    
+    /* Maintain compatibility with legacy names */
+    --navy-dark: #1a3a2e;
+    --navy-medium: #2d5745;
+    --navy-light: #3f7054;
+    --slate: #5a8f6e;
+    --gold: #ff6900;
+    --gold-light: #ff8c3a;
     
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
@@ -44,7 +53,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
-    background-color: var(--cream);
+    background-color: #fafaf8;
     overflow-x: hidden;
 }
 
@@ -88,7 +97,7 @@ a:hover {
     top: 0;
     left: 0;
     right: 0;
-    background-color: rgba(15, 28, 46, 0.95);
+    background-color: rgba(26, 58, 46, 0.98);
     backdrop-filter: blur(10px);
     padding: var(--spacing-sm) 0;
     z-index: 1000;
@@ -136,8 +145,8 @@ a:hover {
 }
 
 .nav-menu a:hover {
-    background-color: rgba(212, 165, 116, 0.1);
-    color: var(--gold);
+    background-color: rgba(255, 105, 0, 0.1);
+    color: var(--orange);
 }
 
 /* ==========================================
@@ -160,16 +169,16 @@ a:hover {
 
 .btn-primary,
 .btn-primary-large {
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-    color: var(--navy-dark);
-    box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(255, 105, 0, 0.3);
 }
 
 .btn-primary:hover,
 .btn-primary-large:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(212, 165, 116, 0.4);
-    color: var(--navy-dark);
+    box-shadow: 0 6px 25px rgba(255, 105, 0, 0.4);
+    color: var(--white);
 }
 
 .btn-primary-large {
@@ -178,33 +187,33 @@ a:hover {
 }
 
 .btn-primary-small {
-    background-color: var(--gold);
-    color: var(--navy-dark);
+    background-color: var(--orange);
+    color: var(--white);
     padding: 0.5rem 1.25rem;
     font-size: 0.9rem;
 }
 
 .btn-primary-small:hover {
-    background-color: var(--gold-light);
-    color: var(--navy-dark);
+    background-color: var(--orange-light);
+    color: var(--white);
 }
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--gold);
-    border: 2px solid var(--gold);
+    color: var(--orange);
+    border: 2px solid var(--orange);
 }
 
 .btn-secondary:hover {
-    background-color: var(--gold);
-    color: var(--navy-dark);
+    background-color: var(--orange);
+    color: var(--white);
 }
 
 /* ==========================================
    Hero Section
    ========================================== */
 .hero {
-    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-medium) 50%, var(--navy-light) 100%);
+    background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-medium) 50%, var(--forest-light) 100%);
     color: var(--text-light);
     padding: calc(80px + var(--spacing-xl)) 0 var(--spacing-xl) 0;
     min-height: 100vh;
@@ -239,9 +248,9 @@ a:hover {
     right: 0;
     bottom: 0;
     background: linear-gradient(135deg, 
-        rgba(15, 28, 46, 0.9) 0%, 
-        rgba(26, 43, 63, 0.85) 50%, 
-        rgba(45, 64, 89, 0.8) 100%);
+        rgba(26, 58, 46, 0.9) 0%, 
+        rgba(45, 87, 69, 0.85) 50%, 
+        rgba(63, 112, 84, 0.8) 100%);
     pointer-events: none;
     z-index: 1;
 }
@@ -259,7 +268,7 @@ a:hover {
 
 .hero-subtitle {
     font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    color: var(--gold-light);
+    color: var(--orange-light);
     margin-bottom: var(--spacing-md);
     font-weight: 600;
     line-height: 1.4;
@@ -277,7 +286,7 @@ a:hover {
    ========================================== */
 .section-title {
     text-align: center;
-    color: var(--navy-dark);
+    color: var(--forest-dark);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -307,7 +316,7 @@ a:hover {
 }
 
 .service-card {
-    background-color: var(--cream);
+    background-color: #fafaf8;
     border: 2px solid transparent;
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
@@ -318,13 +327,13 @@ a:hover {
 .service-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-color: var(--gold);
+    border-color: var(--orange);
 }
 
 .service-card.featured {
-    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-medium) 100%);
+    background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-medium) 100%);
     color: var(--text-light);
-    border-color: var(--gold);
+    border-color: var(--orange);
 }
 
 .service-card.featured .service-title,
@@ -334,15 +343,15 @@ a:hover {
 }
 
 .service-card.featured .service-number {
-    color: var(--gold);
+    color: var(--orange);
 }
 
 .service-badge {
     position: absolute;
     top: -12px;
     right: 20px;
-    background-color: var(--gold);
-    color: var(--navy-dark);
+    background-color: var(--orange);
+    color: var(--white);
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--radius-md);
     font-size: 0.875rem;
@@ -352,20 +361,20 @@ a:hover {
 .service-number {
     font-size: 3rem;
     font-weight: 700;
-    color: var(--gold);
+    color: var(--orange);
     opacity: 0.3;
     margin-bottom: var(--spacing-sm);
 }
 
 .service-title {
-    color: var(--navy-dark);
+    color: var(--forest-dark);
     margin-bottom: var(--spacing-sm);
 }
 
 .service-price {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--gold);
+    color: var(--orange);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -376,7 +385,7 @@ a:hover {
 }
 
 .service-card.featured .service-price {
-    color: var(--gold);
+    color: var(--orange);
 }
 
 .service-card.featured .service-price .price-detail {
@@ -389,7 +398,7 @@ a:hover {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     font-size: 0.9rem;
     font-style: italic;
-    color: var(--navy);
+    color: var(--forest-dark);
     font-weight: 500;
 }
 
@@ -425,7 +434,7 @@ a:hover {
     content: '✓';
     position: absolute;
     left: 0;
-    color: var(--gold);
+    color: var(--orange);
     font-weight: 700;
 }
 
@@ -438,7 +447,7 @@ a:hover {
    ========================================== */
 .about {
     padding: var(--spacing-xl) 0;
-    background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
+    background: linear-gradient(180deg, #f4f1e1 0%, #ffffff 100%);
 }
 
 .about-header {
@@ -454,7 +463,7 @@ a:hover {
     height: 180px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid var(--gold);
+    border: 4px solid var(--orange);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     flex-shrink: 0;
 }
@@ -467,11 +476,12 @@ a:hover {
 .about-header-text .section-title {
     text-align: left;
     margin-bottom: var(--spacing-sm);
+    color: var(--forest-dark);
 }
 
 .about-intro {
     font-size: 1.25rem;
-    color: var(--slate);
+    color: var(--forest-accent);
     margin-bottom: 0;
     font-weight: 500;
 }
@@ -489,7 +499,7 @@ a:hover {
     padding: var(--spacing-md);
     background-color: var(--white);
     border-radius: var(--radius-md);
-    border-left: 4px solid var(--gold);
+    border-left: 4px solid var(--orange);
     transition: var(--transition);
 }
 
@@ -504,20 +514,20 @@ a:hover {
 }
 
 .credential-item h3 {
-    color: var(--navy-dark);
+    color: var(--forest-dark);
     margin-bottom: var(--spacing-xs);
     font-size: 1.25rem;
 }
 
 .credential-item p {
-    color: var(--slate);
+    color: var(--forest-accent);
     margin: 0;
 }
 
 .about-cta {
     margin-top: var(--spacing-lg);
     padding: var(--spacing-lg);
-    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-medium) 100%);
+    background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-medium) 100%);
     border-radius: var(--radius-lg);
 }
 
@@ -565,7 +575,7 @@ a:hover {
 }
 
 .blog-card {
-    background-color: var(--cream);
+    background-color: #fafaf8;
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
     transition: var(--transition);
@@ -575,13 +585,13 @@ a:hover {
 .blog-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-color: var(--gold);
+    border-color: var(--orange);
 }
 
 .blog-category {
     display: inline-block;
-    background-color: var(--gold);
-    color: var(--navy-dark);
+    background-color: var(--orange);
+    color: var(--white);
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--radius-sm);
     font-size: 0.875rem;
@@ -590,12 +600,12 @@ a:hover {
 }
 
 .blog-title {
-    color: var(--navy-dark);
+    color: var(--forest-dark);
     margin-bottom: var(--spacing-sm);
 }
 
 .blog-excerpt {
-    color: var(--slate);
+    color: var(--forest-accent);
     margin-bottom: var(--spacing-md);
 }
 
@@ -611,7 +621,7 @@ a:hover {
    ========================================== */
 .cta {
     padding: var(--spacing-xl) 0;
-    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-medium) 50%, var(--slate) 100%);
+    background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-medium) 50%, var(--forest-accent) 100%);
     color: var(--text-light);
     text-align: center;
 }
@@ -634,7 +644,7 @@ a:hover {
 
 .cta-note {
     margin-top: var(--spacing-md);
-    color: var(--gold-light);
+    color: var(--orange-light);
     font-size: 0.9rem;
 }
 
@@ -642,7 +652,7 @@ a:hover {
    Footer
    ========================================== */
 .footer {
-    background-color: var(--navy-dark);
+    background-color: var(--forest-dark);
     color: var(--text-light);
     padding: var(--spacing-lg) 0 var(--spacing-md) 0;
 }
@@ -681,7 +691,7 @@ a:hover {
 
 .footer-links a:hover {
     opacity: 1;
-    color: var(--gold);
+    color: var(--orange);
 }
 
 .footer-bottom {
