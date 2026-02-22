@@ -79,7 +79,7 @@ a:hover { color: var(--orange-light); }
 .navbar {
     position: fixed;
     top: 0; left: 0; right: 0;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(247, 244, 234, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     padding: 0.75rem 0;
@@ -88,8 +88,8 @@ a:hover { color: var(--orange-light); }
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background: rgba(247, 244, 234, 0.96);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
 }
 .navbar .container { display: flex; justify-content: space-between; align-items: center; }
 
@@ -283,7 +283,17 @@ a:hover { color: var(--orange-light); }
     66% { transform: translateY(10px) rotate(-1deg); }
 }
 
-.hero-content { position: relative; z-index: 3; max-width: 750px; text-align: center; margin: 0 auto; }
+.hero-content { 
+    position: relative; 
+    z-index: 3; 
+    max-width: 750px; 
+    text-align: center; 
+    margin: 0 auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 .hero-badge {
     display: inline-block;
