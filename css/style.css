@@ -16,13 +16,13 @@
     --white: #ffffff;
     --text-dark: #1a1a1a;
     --text-light: #f0f0f0;
-    --text-muted: #7a8a80;
+    --text-muted: #556b5e;
 
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 4rem;
-    --spacing-xl: 7rem;
+    --spacing-xl: 5rem;
 
     --radius-sm: 6px;
     --radius-md: 12px;
@@ -71,6 +71,15 @@ a:hover { color: var(--orange-light); }
 .fade-up.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Respect reduced motion — show content immediately */
+@media (prefers-reduced-motion: reduce) {
+    .fade-up {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 /* ==========================================
@@ -216,8 +225,8 @@ a:hover { color: var(--orange-light); }
 .hero-bg-image {
     width: 100%; height: 100%;
     object-fit: cover;
-    opacity: 0.12;
-    filter: grayscale(40%) contrast(1.1);
+    opacity: 0.18;
+    filter: grayscale(30%) contrast(1.15);
 }
 
 /* Animated gradient overlay */
@@ -330,7 +339,7 @@ a:hover { color: var(--orange-light); }
 
 .hero-description {
     font-size: 1.05rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.85);
     margin-bottom: var(--spacing-lg);
     max-width: 600px;
     margin-left: auto;
@@ -360,7 +369,7 @@ a:hover { color: var(--orange-light); }
 .prototype-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg);
     align-items: center;
 }
 
@@ -411,7 +420,7 @@ a:hover { color: var(--orange-light); }
 }
 .proto-icon { font-size: 1.8rem; flex-shrink: 0; line-height: 1; }
 .proto-card h3 { font-size: 1.1rem; margin-bottom: 0.3rem; color: var(--orange-light); font-weight: 700; }
-.proto-card p { font-size: 0.95rem; color: rgba(255,255,255,0.75); margin: 0; line-height: 1.5; }
+.proto-card p { font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.5; }
 
 /* ==========================================
    Section Titles
@@ -597,7 +606,7 @@ a:hover { color: var(--orange-light); }
 .about-header-text .section-title { text-align: left; }
 .about-intro { font-size: 1.2rem; color: var(--forest-accent); font-weight: 500; margin-bottom: 0; }
 
-.credentials { display: grid; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg); }
+.credentials { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-sm); margin-bottom: var(--spacing-lg); }
 
 .credential-item {
     display: flex;
@@ -639,7 +648,7 @@ a:hover { color: var(--orange-light); }
 }
 
 .industries .section-title { color: #fff; }
-.industries .section-subtitle { color: rgba(255,255,255,0.6); }
+.industries .section-subtitle { color: rgba(255,255,255,0.75); }
 
 .industries-grid {
     display: grid;
@@ -662,7 +671,7 @@ a:hover { color: var(--orange-light); }
 }
 .industry-icon { font-size: 2.5rem; margin-bottom: var(--spacing-sm); }
 .industry-card h3 { color: var(--orange-light); font-size: 1.15rem; margin-bottom: 0.5rem; }
-.industry-card p { color: rgba(255,255,255,0.65); font-size: 0.9rem; margin: 0; line-height: 1.6; }
+.industry-card p { color: rgba(255,255,255,0.78); font-size: 0.9rem; margin: 0; line-height: 1.6; }
 
 /* ==========================================
    Blog Section
@@ -803,6 +812,7 @@ a:hover { color: var(--orange-light); }
     .prototype-grid { grid-template-columns: 1fr; gap: var(--spacing-lg); }
     .industries-grid { grid-template-columns: 1fr; }
 
+    .credentials { grid-template-columns: 1fr; }
     .about-header { flex-direction: column; text-align: center; }
     .about-header-text .section-title { text-align: center; }
     .headshot { width: 140px; height: 140px; }
