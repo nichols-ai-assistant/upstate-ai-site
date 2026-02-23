@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Opportunity Scorecard - Up-State AI</title>
+    <style>
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+        
+        :root {
+            --forest-dark: #1a3a2e;
+            --forest-medium: #2d5745;
+            --orange: #ff6900;
+            --orange-light: #ff8c3a;
+            --cream: #f7f4ea;
+            --warm-white: #fdfcf8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: white;
+            color: var(--forest-dark);
+            padding: 0;
+            max-width: 8.5in;
+            margin: 0 auto;
+        }
+        
+        .scorecard {
+            background: white;
+            padding: 0.75in 0.5in;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 1.5em;
+            border-bottom: 4px solid var(--orange);
+            padding-bottom: 1em;
+        }
+        
+        .logo-text {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--forest-dark);
+            margin-bottom: 0.2em;
+        }
+        
+        .logo-text span {
+            color: var(--orange);
+        }
+        
+        h1 {
+            font-size: 1.8em;
+            color: var(--forest-dark);
+            margin: 0.5em 0 0.3em 0;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1em;
+            color: var(--forest-medium);
+            margin-bottom: 0.5em;
+        }
+        
+        .instructions {
+            background: var(--cream);
+            padding: 1em;
+            border-left: 4px solid var(--orange);
+            margin: 1.5em 0;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        
+        .instructions strong {
+            color: var(--orange);
+        }
+        
+        .pillar-section {
+            margin: 1.5em 0;
+            page-break-inside: avoid;
+        }
+        
+        .pillar-header {
+            background: var(--forest-dark);
+            color: var(--cream);
+            padding: 0.6em 1em;
+            font-size: 1.2em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+        
+        .pillar-description {
+            background: var(--cream);
+            padding: 0.8em 1em;
+            font-size: 0.9em;
+            border-left: 4px solid var(--orange);
+        }
+        
+        .rating-grid {
+            display: flex;
+            gap: 0.3em;
+            margin: 0.8em 0;
+            justify-content: center;
+        }
+        
+        .rating-box {
+            flex: 1;
+            border: 2px solid var(--forest-medium);
+            padding: 1.5em 0.5em;
+            text-align: center;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .rating-box:hover {
+            background: var(--cream);
+        }
+        
+        .rating-number {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--orange);
+            display: block;
+        }
+        
+        .rating-label {
+            font-size: 0.75em;
+            color: var(--forest-medium);
+            margin-top: 0.3em;
+            display: block;
+        }
+        
+        .notes-area {
+            margin-top: 0.5em;
+            padding: 0.8em;
+            border: 2px dashed var(--forest-medium);
+            min-height: 3em;
+            background: white;
+        }
+        
+        .notes-label {
+            font-size: 0.85em;
+            color: var(--forest-medium);
+            font-weight: 600;
+            margin-bottom: 0.3em;
+        }
+        
+        .total-section {
+            margin: 2em 0 1.5em 0;
+            padding: 1.2em;
+            background: var(--orange);
+            color: white;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+        
+        .total-section h2 {
+            font-size: 1.4em;
+            margin-bottom: 0.5em;
+        }
+        
+        .total-box {
+            background: white;
+            color: var(--forest-dark);
+            padding: 0.8em;
+            font-size: 2.5em;
+            font-weight: 700;
+            border-radius: 8px;
+            display: inline-block;
+            min-width: 120px;
+            margin: 0.5em 0;
+        }
+        
+        .interpretation {
+            margin: 1.5em 0;
+            page-break-inside: avoid;
+        }
+        
+        .interpretation h3 {
+            font-size: 1.1em;
+            color: var(--forest-dark);
+            margin-bottom: 0.8em;
+            border-bottom: 2px solid var(--orange);
+            padding-bottom: 0.3em;
+        }
+        
+        .score-range {
+            margin: 0.8em 0;
+            padding: 0.8em;
+            background: var(--cream);
+            border-left: 4px solid var(--forest-medium);
+        }
+        
+        .score-range strong {
+            color: var(--orange);
+            font-size: 1.1em;
+        }
+        
+        .score-range p {
+            margin-top: 0.3em;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+        
+        footer {
+            margin-top: 2em;
+            padding-top: 1em;
+            border-top: 3px solid var(--forest-dark);
+            text-align: center;
+        }
+        
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 2em;
+            margin: 1em 0;
+            font-size: 0.95em;
+        }
+        
+        .contact-item {
+            color: var(--forest-dark);
+        }
+        
+        .contact-item strong {
+            color: var(--orange);
+        }
+        
+        .tagline {
+            font-size: 0.9em;
+            color: var(--forest-medium);
+            font-style: italic;
+            margin-top: 0.8em;
+        }
+        
+        @media print {
+            body {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .scorecard {
+                padding: 0;
+            }
+            
+            .rating-box {
+                border: 2px solid var(--forest-medium) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scorecard">
+        <header>
+            <div class="logo-text">UP-STATE <span>AI</span></div>
+            <h1>AI Opportunity Scorecard</h1>
+            <p class="subtitle">Assess your manufacturing business's AI readiness</p>
+        </header>
+
+        <div class="instructions">
+            <strong>Instructions:</strong> Rate your business honestly on each of the four pillars below. Circle or mark your score (1 = struggling, 5 = world-class). Add up your total at the bottom to see where you stand and what your next steps should be.
+        </div>
+
+        <!-- Pillar 1: Data -->
+        <div class="pillar-section">
+            <div class="pillar-header">
+                📊 PILLAR 1: DATA
+            </div>
+            <div class="pillar-description">
+                <strong>Assess:</strong> Data quality, accessibility, governance, and documentation. Do you have clean, organized data that's easy to access? Are data standards documented?
+            </div>
+            <div class="rating-grid">
+                <div class="rating-box">
+                    <span class="rating-number">1</span>
+                    <span class="rating-label">Poor/None</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">2</span>
+                    <span class="rating-label">Limited</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">3</span>
+                    <span class="rating-label">Adequate</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">4</span>
+                    <span class="rating-label">Good</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">5</span>
+                    <span class="rating-label">Excellent</span>
+                </div>
+            </div>
+            <div class="notes-area">
+                <div class="notes-label">Notes:</div>
+            </div>
+        </div>
+
+        <!-- Pillar 2: People -->
+        <div class="pillar-section">
+            <div class="pillar-header">
+                👥 PILLAR 2: PEOPLE
+            </div>
+            <div class="pillar-description">
+                <strong>Assess:</strong> Team skills, leadership buy-in, and organizational culture around technology. Is your team curious and open to new tools? Does leadership support innovation?
+            </div>
+            <div class="rating-grid">
+                <div class="rating-box">
+                    <span class="rating-number">1</span>
+                    <span class="rating-label">Poor/None</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">2</span>
+                    <span class="rating-label">Limited</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">3</span>
+                    <span class="rating-label">Adequate</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">4</span>
+                    <span class="rating-label">Good</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">5</span>
+                    <span class="rating-label">Excellent</span>
+                </div>
+            </div>
+            <div class="notes-area">
+                <div class="notes-label">Notes:</div>
+            </div>
+        </div>
+
+        <!-- Pillar 3: Process -->
+        <div class="pillar-section">
+            <div class="pillar-header">
+                ⚙️ PILLAR 3: PROCESS
+            </div>
+            <div class="pillar-description">
+                <strong>Assess:</strong> Workflow documentation, process stability, and operational maturity. Are your key processes documented and measurable? Do you track KPIs?
+            </div>
+            <div class="rating-grid">
+                <div class="rating-box">
+                    <span class="rating-number">1</span>
+                    <span class="rating-label">Poor/None</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">2</span>
+                    <span class="rating-label">Limited</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">3</span>
+                    <span class="rating-label">Adequate</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">4</span>
+                    <span class="rating-label">Good</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">5</span>
+                    <span class="rating-label">Excellent</span>
+                </div>
+            </div>
+            <div class="notes-area">
+                <div class="notes-label">Notes:</div>
+            </div>
+        </div>
+
+        <!-- Pillar 4: Strategy -->
+        <div class="pillar-section">
+            <div class="pillar-header">
+                🎯 PILLAR 4: STRATEGY
+            </div>
+            <div class="pillar-description">
+                <strong>Assess:</strong> Strategic clarity, ROI focus, and goal-setting. Do you have clear business objectives? Can you articulate what success looks like with numbers?
+            </div>
+            <div class="rating-grid">
+                <div class="rating-box">
+                    <span class="rating-number">1</span>
+                    <span class="rating-label">Poor/None</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">2</span>
+                    <span class="rating-label">Limited</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">3</span>
+                    <span class="rating-label">Adequate</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">4</span>
+                    <span class="rating-label">Good</span>
+                </div>
+                <div class="rating-box">
+                    <span class="rating-number">5</span>
+                    <span class="rating-label">Excellent</span>
+                </div>
+            </div>
+            <div class="notes-area">
+                <div class="notes-label">Notes:</div>
+            </div>
+        </div>
+
+        <!-- Total Score -->
+        <div class="total-section">
+            <h2>YOUR TOTAL SCORE</h2>
+            <div class="total-box">_____ / 20</div>
+        </div>
+
+        <!-- Interpretation Guide -->
+        <div class="interpretation">
+            <h3>What Your Score Means & Next Steps</h3>
+            
+            <div class="score-range">
+                <strong>16-20: Ready to Scale</strong>
+                <p><strong>Next steps:</strong> Identify your highest-ROI use case, build a business case, and get vendor proposals. You have the foundation to execute successfully.</p>
+            </div>
+            
+            <div class="score-range">
+                <strong>12-15: Ready for Pilots</strong>
+                <p><strong>Next steps:</strong> Choose ONE focused pilot project with clear success metrics. Budget 3-6 months. Build evidence and momentum before scaling.</p>
+            </div>
+            
+            <div class="score-range">
+                <strong>8-11: Build Foundations First</strong>
+                <p><strong>Next steps:</strong> Audit your data infrastructure, document 2-3 key processes, and conduct AI literacy training with your team. Strengthen the pillars before investing in AI.</p>
+            </div>
+            
+            <div class="score-range">
+                <strong>4-7: Not Ready Yet</strong>
+                <p><strong>Next steps:</strong> Focus on operational excellence and business fundamentals. Revisit AI in 12-18 months when your foundation is stronger. That's the honest advice that will save you money.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="logo-text" style="font-size: 1.5em;">UP-STATE <span>AI</span></div>
+            <div class="contact">
+                <div class="contact-item">
+                    <strong>Email:</strong> ben@up-state-ai.com
+                </div>
+                <div class="contact-item">
+                    <strong>Web:</strong> up-state-ai.com
+                </div>
+            </div>
+            <p class="tagline">Honest AI consulting for Central New York manufacturers</p>
+        </footer>
+    </div>
+</body>
+</html>
