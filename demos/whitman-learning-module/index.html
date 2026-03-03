@@ -3,6 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){
+  var k='whitman2026',s=sessionStorage.getItem('_auth');
+  if(s!==k){
+    var p=prompt('Enter access code:');
+    if(p!==k){document.documentElement.innerHTML='<body style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;color:#666"><h2>Access denied</h2></body>';return;}
+    sessionStorage.setItem('_auth',k);
+  }
+})();
+</script>
 <title>Make vs. Buy Decision Analysis | Whitman Executive Education</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap');
