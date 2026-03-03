@@ -4,13 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-(function(){
-  var k='whitman2026',s=sessionStorage.getItem('_auth');
-  if(s!==k){
-    var p=prompt('Enter access code:');
-    if(p!==k){document.documentElement.innerHTML='<body style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;color:#666"><h2>Access denied</h2></body>';return;}
-    sessionStorage.setItem('_auth',k);
-  }
+(async function(){
+  var h='8df12783443ad1b72ec0a4daf05b12137e3452236553591534b291db16d478b4';
+  async function sha256(m){var b=new TextEncoder().encode(m);var d=await crypto.subtle.digest('SHA-256',b);return Array.from(new Uint8Array(d)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}
+  var s=sessionStorage.getItem('_auth');
+  if(s===h) return;
+  var p=prompt('Enter access code:');
+  if(!p){document.documentElement.innerHTML='<body style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;color:#666"><h2>Access denied</h2></body>';return;}
+  var ph=await sha256(p);
+  if(ph!==h){document.documentElement.innerHTML='<body style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;color:#666"><h2>Access denied</h2></body>';return;}
+  sessionStorage.setItem('_auth',h);
 })();
 </script>
 <title>Make vs. Buy Decision Analysis | Whitman Executive Education</title>
