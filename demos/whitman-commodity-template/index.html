@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(async function(){
+  var h='8df12783443ad1b72ec0a4daf05b12137e3452236553591534b291db16d478b4';
+  async function sha256(m){var b=new TextEncoder().encode(m);var d=await crypto.subtle.digest('SHA-256',b);return Array.from(new Uint8Array(d)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}
+  var s=sessionStorage.getItem('_auth');
+  if(s===h) return;
+  var p=prompt('Enter access code:');
+  if(!p){document.documentElement.innerHTML='<body style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;color:#666"><h2>Access denied</h2></body>';return;}
+  var ph=await sha256(p);
+  if(ph!==h){document.documentElement.innerHTML='<body style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;color:#666"><h2>Access denied</h2></body>';return;}
+  sessionStorage.setItem('_auth',h);
+})();
+</script>
+<title>Purchasing Commodity Templates: Bare Circuit Boards | Whitman Executive Education</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+  :root {
+    --su-orange: #F76900;
+    --su-orange-dark: #D74100;
+    --su-orange-light: #FF8E00;
+    --su-orange-10: #FEF0E6;
+    --su-orange-20: #FDE1CC;
+    --su-orange-30: #FDD2B3;
+    --su-blue: #000E54;
+    --su-blue-medium: #203299;
+    --su-blue-light: #2B72D7;
+    --su-blue-10: #E6E7EE;
+    --su-gray: #707780;
+    --su-gray-light: #ADB3B8;
+    --su-gray-dark: #404040;
+    --make-color: #2B72D7;
+    --buy-color: #F76900;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', -apple-system, sans-serif;
+    color: var(--su-gray-dark);
+    background: #fff;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .header {
+    background: var(--su-blue);
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-logo { font-size: 14px; font-weight: 300; letter-spacing: 0.5px; opacity: 0.8; }
+  .header-logo strong { font-weight: 700; opacity: 1; }
+  .header-divider { width: 1px; height: 24px; background: rgba(255,255,255,0.3); }
+  .header-title { font-size: 14px; font-weight: 600; color: var(--su-orange-light); }
+
+  .hero {
+    background: linear-gradient(135deg, var(--su-blue) 0%, var(--su-blue-medium) 100%);
+    color: white;
+    padding: 60px 24px;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--su-orange);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; margin-bottom: 12px; line-height: 1.2; }
+  .hero p { font-size: 18px; font-weight: 300; opacity: 0.85; max-width: 600px; margin: 0 auto; }
+
+  .progress-bar { position: sticky; top: 56px; z-index: 99; height: 4px; background: var(--su-blue-10); }
+  .progress-fill { height: 100%; background: var(--su-orange); width: 0%; transition: width 0.3s ease; }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  .section { border-bottom: 1px solid #eee; }
+  .drawer {
+    cursor: pointer; padding: 24px 0; display: flex; align-items: center;
+    justify-content: space-between; user-select: none; -webkit-tap-highlight-color: transparent;
+  }
+  .drawer:hover { opacity: 0.85; }
+  .drawer-left { display: flex; align-items: center; gap: 14px; }
+  .drawer-num {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--su-orange-10);
+    color: var(--su-orange); font-weight: 700; font-size: 14px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .section.completed .drawer-num { background: var(--su-orange); color: white; }
+  .drawer h2 { font-size: 18px; font-weight: 600; color: var(--su-blue); }
+  .drawer-arrow { font-size: 20px; color: var(--su-gray); transition: transform 0.3s ease; flex-shrink: 0; }
+  .section.open .drawer-arrow { transform: rotate(180deg); }
+  .drawer-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+  .section.open .drawer-content { max-height: 5000px; }
+  .drawer-inner { padding: 0 0 32px 46px; }
+  .drawer-inner p { margin-bottom: 16px; font-size: 16px; color: var(--su-gray-dark); }
+
+  .highlight {
+    background: var(--su-orange-10); border-left: 4px solid var(--su-orange);
+    padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 15px;
+  }
+  .highlight.blue { background: var(--su-blue-10); border-left-color: var(--su-blue-light); }
+
+  .calculator { background: #f8f9fa; border-radius: 12px; padding: 24px; margin: 20px 0; }
+  .calc-title { font-weight: 700; font-size: 16px; color: var(--su-blue); margin-bottom: 16px; }
+  .slider-group { margin-bottom: 20px; }
+  .slider-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 14px; font-weight: 600; }
+  .slider-value { color: var(--su-orange); font-weight: 700; font-size: 16px; }
+  input[type="range"] {
+    -webkit-appearance: none; width: 100%; height: 6px; border-radius: 3px; background: #ddd; outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--su-orange); cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+
+  .chart-container { margin: 20px 0; background: white; border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .chart-canvas-wrap { position: relative; width: 100%; height: 260px; }
+  canvas { width: 100% !important; height: 100% !important; }
+
+  .result-card { display: flex; gap: 12px; margin: 16px 0; }
+  .result-item { flex: 1; padding: 16px; border-radius: 10px; text-align: center; }
+  .result-item.make { background: rgba(43, 114, 215, 0.08); border: 2px solid var(--make-color); }
+  .result-item.buy { background: rgba(247, 105, 0, 0.08); border: 2px solid var(--buy-color); }
+  .result-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .result-item.make .result-label { color: var(--make-color); }
+  .result-item.buy .result-label { color: var(--buy-color); }
+  .result-amount { font-size: 24px; font-weight: 700; color: var(--su-gray-dark); }
+
+  .quiz { background: var(--su-blue); color: white; border-radius: 12px; padding: 24px; margin: 20px 0; }
+  .quiz-question { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+  .quiz-option {
+    padding: 14px 18px; border: 2px solid rgba(255,255,255,0.3); border-radius: 10px;
+    cursor: pointer; font-size: 15px; transition: all 0.2s; background: transparent;
+    color: white; text-align: left; font-family: inherit; width: 100%;
+  }
+  .quiz-option:hover { border-color: var(--su-orange-light); background: rgba(255,255,255,0.05); }
+  .quiz-option.correct { border-color: #27ae60; background: rgba(39, 174, 96, 0.2); }
+  .quiz-option.wrong { border-color: #e74c3c; background: rgba(231, 76, 60, 0.2); }
+  .quiz-option.disabled { pointer-events: none; }
+  .quiz-feedback { margin-top: 14px; padding: 12px 16px; border-radius: 8px; font-size: 14px; display: none; }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.correct-fb { background: rgba(39,174,96,0.15); color: #a8f0c8; }
+  .quiz-feedback.wrong-fb { background: rgba(231,76,60,0.15); color: #f5b7b1; }
+
+  /* Spec form */
+  .spec-form { margin: 20px 0; }
+  .spec-form label { display: block; font-size: 14px; font-weight: 600; color: var(--su-blue); margin-bottom: 4px; margin-top: 14px; }
+  .spec-form select, .spec-form input[type="number"], .spec-form input[type="text"] {
+    width: 100%; padding: 10px 14px; border: 2px solid #ddd; border-radius: 8px;
+    font-size: 15px; font-family: inherit; background: white; color: var(--su-gray-dark);
+    transition: border-color 0.2s;
+  }
+  .spec-form select:focus, .spec-form input:focus { border-color: var(--su-orange); outline: none; }
+  .spec-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .spec-summary {
+    background: white; border: 2px solid var(--su-blue); border-radius: 12px;
+    padding: 24px; margin: 24px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .spec-summary h3 { color: var(--su-blue); font-size: 16px; margin-bottom: 16px; border-bottom: 2px solid var(--su-orange); padding-bottom: 8px; }
+  .spec-summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; font-size: 14px; }
+  .spec-summary-grid .spec-key { font-weight: 600; color: var(--su-gray); }
+  .spec-summary-grid .spec-val { font-weight: 700; color: var(--su-gray-dark); }
+
+  /* Toggle switches */
+  .toggle-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 0; border-bottom: 1px solid #eee;
+  }
+  .toggle-row-label { font-size: 15px; font-weight: 600; color: var(--su-blue); }
+  .toggle-switch {
+    position: relative; width: 48px; height: 26px; cursor: pointer; flex-shrink: 0;
+  }
+  .toggle-switch input { opacity: 0; width: 0; height: 0; }
+  .toggle-track {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: #ccc; border-radius: 13px; transition: background 0.3s;
+  }
+  .toggle-track::before {
+    content: ''; position: absolute; width: 20px; height: 20px; left: 3px; bottom: 3px;
+    background: white; border-radius: 50%; transition: transform 0.3s;
+  }
+  .toggle-switch input:checked + .toggle-track { background: var(--su-orange); }
+  .toggle-switch input:checked + .toggle-track::before { transform: translateX(22px); }
+  .toggle-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--su-gray); }
+  .toggle-content.show { max-height: 300px; padding: 12px 0; }
+  .completeness-bar {
+    background: #f8f9fa; border-radius: 10px; padding: 16px 20px; margin: 20px 0; text-align: center;
+  }
+  .completeness-fill-wrap { background: #ddd; height: 8px; border-radius: 4px; margin-top: 8px; overflow: hidden; }
+  .completeness-fill { height: 100%; background: var(--su-orange); transition: width 0.3s; border-radius: 4px; }
+  .completeness-label { font-weight: 700; font-size: 18px; color: var(--su-blue); }
+
+  /* Ranking */
+  .rank-container { display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
+  .rank-item {
+    display: flex; align-items: center; gap: 10px; padding: 12px 14px;
+    background: white; border: 2px solid #e0e0e0; border-radius: 10px;
+    user-select: none; transition: all 0.25s ease; font-size: 15px;
+  }
+  .rank-item.selected { border-color: var(--su-orange); background: var(--su-orange-10); box-shadow: 0 2px 8px rgba(247,105,0,0.2); }
+  .rank-item .rank-num {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--su-blue-10);
+    color: var(--su-blue); font-weight: 700; font-size: 13px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .rank-arrows { display: flex; flex-direction: column; gap: 2px; flex-shrink: 0; }
+  .rank-arrow-btn {
+    width: 28px; height: 22px; border: 1px solid #ddd; background: #f8f9fa;
+    border-radius: 4px; cursor: pointer; font-size: 12px;
+    display: flex; align-items: center; justify-content: center; color: var(--su-gray);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .rank-arrow-btn:active { background: var(--su-orange-10); border-color: var(--su-orange); color: var(--su-orange); }
+  .check-btn {
+    background: var(--su-orange); color: white; border: none; padding: 12px 28px;
+    border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer;
+    font-family: inherit; transition: background 0.2s;
+  }
+  .check-btn:hover { background: var(--su-orange-dark); }
+  .rank-feedback { margin-top: 12px; padding: 14px; border-radius: 8px; font-size: 14px; display: none; }
+  .rank-feedback.show { display: block; }
+
+  .score-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; background: var(--su-blue);
+    color: white; padding: 10px 24px; display: flex; justify-content: space-between;
+    align-items: center; font-size: 14px; z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+  }
+  .score-bar .score-label { font-weight: 300; }
+  .score-bar .score-val { font-weight: 700; color: var(--su-orange-light); font-size: 18px; }
+
+  .footer {
+    background: var(--su-blue); color: rgba(255,255,255,0.6); text-align: center;
+    padding: 40px 24px 80px; font-size: 13px;
+  }
+  .footer strong { color: white; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .drawer-inner > * { animation: fadeUp 0.4s ease forwards; }
+
+  @media (max-width: 480px) {
+    .hero { padding: 40px 20px; }
+    .drawer-inner { padding-left: 0; }
+    .result-card { flex-direction: column; }
+    .spec-row { grid-template-columns: 1fr; }
+    .spec-summary-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo"><strong>SYRACUSE UNIVERSITY</strong> &nbsp;|&nbsp; Whitman School of Management</div>
+  <div class="header-divider"></div>
+  <div class="header-title">Executive Education</div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">Interactive Module</div>
+  <h1>Purchasing Commodity Templates:<br>Bare Circuit Boards (PCBs)</h1>
+  <p>Master the standardized procurement process for one of electronics manufacturing's most critical commodity categories.</p>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="container">
+
+  <!-- Section 1: Introduction -->
+  <div class="section open" data-section="1">
+    <div class="drawer" onclick="toggleSection(this)">
+      <div class="drawer-left">
+        <div class="drawer-num">1</div>
+        <h2>Introduction to Commodity Purchasing Templates</h2>
+      </div>
+      <div class="drawer-arrow">&#9660;</div>
+    </div>
+    <div class="drawer-content">
+      <div class="drawer-inner">
+        <p>A <strong>commodity purchasing template</strong> is a standardized document framework that streamlines the procurement of goods that are widely available, well-defined by industry specifications, and sourced from multiple qualified suppliers. These templates eliminate ambiguity, reduce cycle time, and ensure consistency across purchasing decisions.</p>
+
+        <p>Why does standardization matter? When procurement teams use ad-hoc processes, they introduce variability — in specifications, evaluation criteria, and supplier communication. This variability leads to <strong>misquoted parts, quality escapes, and longer lead times</strong>. Templates enforce discipline.</p>
+
+        <div class="highlight">
+          <strong>Bare PCBs as a Commodity:</strong> Bare circuit boards (before component assembly) are a textbook commodity category. They are produced in high volume by hundreds of qualified fabricators worldwide, defined by well-established industry standards (IPC-6012, IPC-A-600), and differentiated primarily by price, quality, and lead time — not proprietary technology.
+        </div>
+
+        <p>The global PCB market exceeds <strong>$80 billion annually</strong>. For standard constructions (FR-4, 2-6 layers, standard tolerances), dozens of suppliers can produce functionally identical boards. This makes bare PCBs ideal candidates for template-driven procurement.</p>
+
+        <div class="highlight blue">
+          <strong>Key Insight:</strong> The goal of a commodity template isn't to commoditize the relationship with your supplier — it's to commoditize the <em>process</em>. A great template lets your team spend less time on paperwork and more time on strategic supplier development, quality improvement, and cost optimization.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Bare Board Specification Sheet -->
+  <div class="section" data-section="2">
+    <div class="drawer" onclick="toggleSection(this)">
+      <div class="drawer-left">
+        <div class="drawer-num">2</div>
+        <h2>The Bare Board Specification Sheet</h2>
+      </div>
+      <div class="drawer-arrow">&#9660;</div>
+    </div>
+    <div class="drawer-content">
+      <div class="drawer-inner">
+        <p>The specification sheet is the backbone of any PCB procurement. It communicates exactly what you need to potential suppliers. Fill in the fields below to generate a formatted specification summary.</p>
+
+        <div class="calculator">
+          <div class="calc-title">PCB Specification Builder</div>
+          <div class="spec-form" id="specForm">
+            <div class="spec-row">
+              <div>
+                <label>Board Length (inches)</label>
+                <input type="number" id="specLength" value="4.5" min="0.5" max="24" step="0.1" oninput="updateSpec()">
+              </div>
+              <div>
+                <label>Board Width (inches)</label>
+                <input type="number" id="specWidth" value="3.2" min="0.5" max="18" step="0.1" oninput="updateSpec()">
+              </div>
+            </div>
+            <div class="spec-row">
+              <div>
+                <label>Layer Count</label>
+                <select id="specLayers" onchange="updateSpec()">
+                  <option value="1">1 Layer</option>
+                  <option value="2" selected>2 Layers</option>
+                  <option value="4">4 Layers</option>
+                  <option value="6">6 Layers</option>
+                  <option value="8">8 Layers</option>
+                  <option value="10">10 Layers</option>
+                  <option value="12">12 Layers</option>
+                  <option value="14">14 Layers</option>
+                  <option value="16">16 Layers</option>
+                </select>
+              </div>
+              <div>
+                <label>Base Material</label>
+                <select id="specMaterial" onchange="updateSpec()">
+                  <option value="FR-4" selected>FR-4 (Standard)</option>
+                  <option value="Rogers">Rogers (High Frequency)</option>
+                  <option value="Polyimide">Polyimide (Flex)</option>
+                  <option value="CEM-3">CEM-3 (Low Cost)</option>
+                </select>
+              </div>
+            </div>
+            <div class="spec-row">
+              <div>
+                <label>Copper Weight</label>
+                <select id="specCopper" onchange="updateSpec()">
+                  <option value="0.5 oz">0.5 oz</option>
+                  <option value="1 oz" selected>1 oz</option>
+                  <option value="2 oz">2 oz</option>
+                  <option value="3 oz">3 oz</option>
+                </select>
+              </div>
+              <div>
+                <label>Surface Finish</label>
+                <select id="specFinish" onchange="updateSpec()">
+                  <option value="HASL (Lead-Free)" selected>HASL (Lead-Free)</option>
+                  <option value="ENIG">ENIG</option>
+                  <option value="OSP">OSP</option>
+                  <option value="Immersion Silver">Immersion Silver</option>
+                </select>
+              </div>
+            </div>
+            <div class="spec-row">
+              <div>
+                <label>Min Trace/Space (mils)</label>
+                <input type="number" id="specTrace" value="5" min="2" max="20" step="0.5" oninput="updateSpec()">
+              </div>
+              <div>
+                <label>Smallest Drill (mils)</label>
+                <input type="number" id="specDrill" value="10" min="4" max="30" step="1" oninput="updateSpec()">
+              </div>
+            </div>
+            <div class="spec-row">
+              <div>
+                <label>IPC Class</label>
+                <select id="specIPC" onchange="updateSpec()">
+                  <option value="Class 1 – General">Class 1 – General</option>
+                  <option value="Class 2 – Dedicated Service" selected>Class 2 – Dedicated Service</option>
+                  <option value="Class 3 – High Reliability">Class 3 – High Reliability</option>
+                </select>
+              </div>
+              <div>
+                <label>Board Thickness (mils)</label>
+                <select id="specThickness" onchange="updateSpec()">
+                  <option value="31">31 mils (0.8mm)</option>
+                  <option value="62" selected>62 mils (1.6mm)</option>
+                  <option value="93">93 mils (2.4mm)</option>
+                </select>
+              </div>
+            </div>
+            <div class="spec-row">
+              <div>
+                <label>Quantity</label>
+                <input type="number" id="specQty" value="5000" min="1" max="1000000" step="100" oninput="updateSpec()">
+              </div>
+              <div>
+                <label>Lead Time (business days)</label>
+                <input type="number" id="specLead" value="15" min="1" max="60" step="1" oninput="updateSpec()">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spec-summary" id="specSummary">
+          <h3>📋 Specification Summary</h3>
+          <div class="spec-summary-grid" id="specSummaryGrid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Knowledge Check -->
+  <div class="section" data-section="3">
+    <div class="drawer" onclick="toggleSection(this)">
+      <div class="drawer-left">
+        <div class="drawer-num">3</div>
+        <h2>Knowledge Check</h2>
+      </div>
+      <div class="drawer-arrow">&#9660;</div>
+    </div>
+    <div class="drawer-content">
+      <div class="drawer-inner">
+        <div class="quiz" id="quiz1">
+          <div class="quiz-question">Which surface finish offers the best balance of cost and shelf life for high-volume consumer electronics?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="answerQuiz('quiz1', this, false)">OSP — lowest cost option available</button>
+            <button class="quiz-option" onclick="answerQuiz('quiz1', this, true)">ENIG — good shelf life, flat surface for fine-pitch components, moderate cost</button>
+            <button class="quiz-option" onclick="answerQuiz('quiz1', this, false)">HASL — traditional and reliable for all applications</button>
+            <button class="quiz-option" onclick="answerQuiz('quiz1', this, false)">Immersion Silver — superior conductivity justifies the premium</button>
+          </div>
+          <div class="quiz-feedback" id="quiz1-feedback"></div>
+        </div>
+
+        <div class="quiz" id="quiz2" style="margin-top: 16px;">
+          <div class="quiz-question">What is the most common cause of PCB procurement delays?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="answerQuiz('quiz2', this, false)">Shipping and customs clearance</button>
+            <button class="quiz-option" onclick="answerQuiz('quiz2', this, false)">Raw material shortages (copper, laminate)</button>
+            <button class="quiz-option" onclick="answerQuiz('quiz2', this, true)">Incomplete or ambiguous specifications requiring engineering queries</button>
+            <button class="quiz-option" onclick="answerQuiz('quiz2', this, false)">Supplier capacity constraints</button>
+          </div>
+          <div class="quiz-feedback" id="quiz2-feedback"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Cost Driver Analysis -->
+  <div class="section" data-section="4">
+    <div class="drawer" onclick="toggleSection(this)">
+      <div class="drawer-left">
+        <div class="drawer-num">4</div>
+        <h2>Cost Driver Analysis</h2>
+      </div>
+      <div class="drawer-arrow">&#9660;</div>
+    </div>
+    <div class="drawer-content">
+      <div class="drawer-inner">
+        <p>PCB pricing isn't a single number — it's driven by multiple interacting factors. Use the controls below to see how each parameter affects unit cost and total cost in real time.</p>
+
+        <div class="calculator">
+          <div class="calc-title">Interactive Cost Calculator</div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Layer Count</span>
+              <span class="slider-value" id="costLayerVal">4 layers</span>
+            </div>
+            <input type="range" id="costLayers" min="0" max="3" step="1" value="1" oninput="updateCost()">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Material</span>
+              <span class="slider-value" id="costMatVal">FR-4</span>
+            </div>
+            <input type="range" id="costMat" min="0" max="1" step="1" value="0" oninput="updateCost()">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Surface Finish</span>
+              <span class="slider-value" id="costFinishVal">HASL</span>
+            </div>
+            <input type="range" id="costFinish" min="0" max="3" step="1" value="0" oninput="updateCost()">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Volume (units)</span>
+              <span class="slider-value" id="costVolVal">5,000</span>
+            </div>
+            <input type="range" id="costVol" min="100" max="100000" step="100" value="5000" oninput="updateCost()">
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <div class="chart-canvas-wrap">
+            <canvas id="costChart"></canvas>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="result-item make">
+            <div class="result-label">Unit Price</div>
+            <div class="result-amount" id="unitPrice">$0.85</div>
+          </div>
+          <div class="result-item buy">
+            <div class="result-label">Total Cost</div>
+            <div class="result-amount" id="totalCost">$4,250</div>
+          </div>
+        </div>
+
+        <div class="highlight">
+          <strong>Try this:</strong> Move layers from 2 to 8 and watch unit cost nearly triple. Now increase volume from 1,000 to 50,000 — see how unit cost drops 40-60%. Volume is the most powerful lever in PCB pricing, but layer count is the biggest per-unit cost driver.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Supplier Evaluation Matrix -->
+  <div class="section" data-section="5">
+    <div class="drawer" onclick="toggleSection(this)">
+      <div class="drawer-left">
+        <div class="drawer-num">5</div>
+        <h2>Supplier Evaluation Matrix</h2>
+      </div>
+      <div class="drawer-arrow">&#9660;</div>
+    </div>
+    <div class="drawer-content">
+      <div class="drawer-inner">
+        <p><strong>Rank these supplier evaluation factors</strong> from most important (top) to least important for bare PCB procurement:</p>
+
+        <div class="rank-container" id="rankContainer">
+          <div class="rank-item" data-id="quality">
+            <div class="rank-arrows">
+              <button class="rank-arrow-btn" onclick="moveRank(this, -1)">&#9650;</button>
+              <button class="rank-arrow-btn" onclick="moveRank(this, 1)">&#9660;</button>
+            </div>
+            <span class="rank-num">1</span>
+            <span>Quality / Yield Rate</span>
+          </div>
+          <div class="rank-item" data-id="leadtime">
+            <div class="rank-arrows">
+              <button class="rank-arrow-btn" onclick="moveRank(this, -1)">&#9650;</button>
+              <button class="rank-arrow-btn" onclick="moveRank(this, 1)">&#9660;</button>
+            </div>
+            <span class="rank-num">2</span>
+            <span>Lead Time Reliability</span>
+          </div>
+          <div class="rank-item" data-id="price">
+            <div class="rank-arrows">
+              <button class="rank-arrow-btn" onclick="moveRank(this, -1)">&#9650;</button>
+              <button class="rank-arrow-btn" onclick="moveRank(this, 1)">&#9660;</button>
+            </div>
+            <span class="rank-num">3</span>
+            <span>Unit Price</span>
+          </div>
+          <div class="rank-item" data-id="dfm">
+            <div class="rank-arrows">
+              <button class="rank-arrow-btn" onclick="moveRank(this, -1)">&#9650;</button>
+              <button class="rank-arrow-btn" onclick="moveRank(this, 1)">&#9660;</button>
+            </div>
+            <span class="rank-num">4</span>
+            <span>DFM Support</span>
+          </div>
+          <div class="rank-item" data-id="certs">
+            <div class="rank-arrows">
+              <button class="rank-arrow-btn" onclick="moveRank(this, -1)">&#9650;</button>
+              <button class="rank-arrow-btn" onclick="moveRank(this, 1)">&#9660;</button>
+            </div>
+            <span class="rank-num">5</span>
+            <span>Certifications (UL/ISO/ITAR)</span>
+          </div>
+          <div class="rank-item" data-id="moq">
+            <div class="rank-arrows">
+              <button class="rank-arrow-btn" onclick="moveRank(this, -1)">&#9650;</button>
+              <button class="rank-arrow-btn" onclick="moveRank(this, 1)">&#9660;</button>
+            </div>
+            <span class="rank-num">6</span>
+            <span>Minimum Order Flexibility</span>
+          </div>
+        </div>
+
+        <button class="check-btn" onclick="checkRanking()">Check My Ranking</button>
+        <div class="rank-feedback" id="rankFeedback"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6: RFQ Template Builder -->
+  <div class="section" data-section="6">
+    <div class="drawer" onclick="toggleSection(this)">
+      <div class="drawer-left">
+        <div class="drawer-num">6</div>
+        <h2>RFQ Template Builder</h2>
+      </div>
+      <div class="drawer-arrow">&#9660;</div>
+    </div>
+    <div class="drawer-content">
+      <div class="drawer-inner">
+        <p>A complete Request for Quote ensures suppliers can respond accurately the first time. Toggle each section to see what it contains — and watch the completeness score update.</p>
+
+        <div class="completeness-bar">
+          <div class="completeness-label" id="completenessLabel">0% Complete</div>
+          <div class="completeness-fill-wrap"><div class="completeness-fill" id="completenessFill" style="width:0%"></div></div>
+        </div>
+
+        <div id="rfqToggles">
+          <div class="toggle-row">
+            <span class="toggle-row-label">Company Info</span>
+            <label class="toggle-switch"><input type="checkbox" onchange="toggleRFQ(this, 'rfq-company')"><span class="toggle-track"></span></label>
+          </div>
+          <div class="toggle-content" id="rfq-company">Company name, address, buyer contact, phone/email, DUNS number, payment terms preference.</div>
+
+          <div class="toggle-row">
+            <span class="toggle-row-label">Board Specifications</span>
+            <label class="toggle-switch"><input type="checkbox" onchange="toggleRFQ(this, 'rfq-specs')"><span class="toggle-track"></span></label>
+          </div>
+          <div class="toggle-content" id="rfq-specs">Board dimensions, layer count, material, copper weight, surface finish, board thickness, impedance requirements, min trace/space, smallest drill, solder mask color, silkscreen, panelization details, Gerber file format.</div>
+
+          <div class="toggle-row">
+            <span class="toggle-row-label">Quality Requirements</span>
+            <label class="toggle-switch"><input type="checkbox" onchange="toggleRFQ(this, 'rfq-quality')"><span class="toggle-track"></span></label>
+          </div>
+          <div class="toggle-content" id="rfq-quality">IPC class (1/2/3), acceptance criteria per IPC-A-600, electrical testing requirements (flying probe/bed of nails), cross-section requirements, first article inspection, ongoing lot sampling rate.</div>
+
+          <div class="toggle-row">
+            <span class="toggle-row-label">Delivery Terms</span>
+            <label class="toggle-switch"><input type="checkbox" onchange="toggleRFQ(this, 'rfq-delivery')"><span class="toggle-track"></span></label>
+          </div>
+          <div class="toggle-content" id="rfq-delivery">Required lead time, shipping method (air/sea/ground), Incoterms (FOB/CIF/DDP), packaging requirements, labeling format, delivery schedule (blanket PO or spot buy).</div>
+
+          <div class="toggle-row">
+            <span class="toggle-row-label">Commercial Terms</span>
+            <label class="toggle-switch"><input type="checkbox" onchange="toggleRFQ(this, 'rfq-commercial')"><span class="toggle-track"></span></label>
+          </div>
+          <div class="toggle-content" id="rfq-commercial">Volume tiers and pricing, NRE/tooling charges, payment terms (Net 30/45/60), price validity period, volume commitment expectations, early payment discount.</div>
+
+          <div class="toggle-row">
+            <span class="toggle-row-label">Compliance & Certifications</span>
+            <label class="toggle-switch"><input type="checkbox" onchange="toggleRFQ(this, 'rfq-compliance')"><span class="toggle-track"></span></label>
+          </div>
+          <div class="toggle-content" id="rfq-compliance">UL listing requirement, ISO 9001 / AS9100 / IATF 16949, ITAR registration (if applicable), RoHS/REACH compliance, conflict minerals reporting, country of origin restrictions.</div>
+        </div>
+
+        <div class="highlight blue" style="margin-top: 20px;">
+          <strong>Best practice:</strong> An RFQ with all six sections enabled gets 3x faster turnaround from suppliers and 60% fewer engineering queries. Missing any one section risks delays, requotes, or mismatched expectations.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 7: Final Assessment -->
+  <div class="section" data-section="7">
+    <div class="drawer" onclick="toggleSection(this)">
+      <div class="drawer-left">
+        <div class="drawer-num">7</div>
+        <h2>Final Assessment</h2>
+      </div>
+      <div class="drawer-arrow">&#9660;</div>
+    </div>
+    <div class="drawer-content">
+      <div class="drawer-inner">
+        <div class="quiz" id="quiz3">
+          <div class="quiz-question">Your company needs 50,000 units of a 4-layer FR-4 board with ENIG finish. Three suppliers quote within 5% of each other. What should be your primary differentiator?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="answerQuiz('quiz3', this, false)">Always choose the lowest price — 5% on 50K units is significant savings.</button>
+            <button class="quiz-option" onclick="answerQuiz('quiz3', this, true)">Lead time reliability and quality track record — at similar prices, delivery performance and yield rates determine true cost.</button>
+            <button class="quiz-option" onclick="answerQuiz('quiz3', this, false)">Geographic proximity — closer suppliers are always better.</button>
+            <button class="quiz-option" onclick="answerQuiz('quiz3', this, false)">Choose the supplier with the most certifications regardless of relevance.</button>
+          </div>
+          <div class="quiz-feedback" id="quiz3-feedback"></div>
+        </div>
+
+        <div class="quiz" id="quiz4" style="margin-top: 16px;">
+          <div class="quiz-question">When should you specify IPC Class 3 for bare boards?</div>
+          <div class="quiz-options">
+            <button class="quiz-option" onclick="answerQuiz('quiz4', this, false)">Always — higher quality is always better.</button>
+            <button class="quiz-option" onclick="answerQuiz('quiz4', this, false)">Only for boards with more than 6 layers.</button>
+            <button class="quiz-option" onclick="answerQuiz('quiz4', this, true)">When the end product demands high reliability: medical devices, aerospace, military, or safety-critical automotive applications.</button>
+            <button class="quiz-option" onclick="answerQuiz('quiz4', this, false)">Whenever the board cost exceeds $5 per unit.</button>
+          </div>
+          <div class="quiz-feedback" id="quiz4-feedback"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p><strong>Martin J. Whitman School of Management</strong><br>
+  Syracuse University &nbsp;|&nbsp; Executive Education<br><br>
+  Interactive module prototype. Developed for educational demonstration.</p>
+</div>
+
+<div class="score-bar">
+  <span class="score-label">Progress</span>
+  <span><span class="score-val" id="scoreDisplay">0</span> / 4 correct</span>
+</div>
+
+<script>
+let score = 0;
+let sectionsCompleted = new Set();
+
+function toggleSection(drawer) {
+  const section = drawer.parentElement;
+  const wasOpen = section.classList.contains('open');
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('open'));
+  if (!wasOpen) {
+    section.classList.add('open');
+    setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = document.querySelectorAll('.section').length;
+  const pct = (sectionsCompleted.size / total) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function markComplete(sectionNum) {
+  sectionsCompleted.add(sectionNum);
+  const sec = document.querySelector(`[data-section="${sectionNum}"]`);
+  if (sec) sec.classList.add('completed');
+  updateProgress();
+}
+
+// Spec Sheet Builder
+function updateSpec() {
+  const data = {
+    'Dimensions': document.getElementById('specLength').value + '" × ' + document.getElementById('specWidth').value + '"',
+    'Board Area': (parseFloat(document.getElementById('specLength').value) * parseFloat(document.getElementById('specWidth').value)).toFixed(2) + ' sq in',
+    'Layer Count': document.getElementById('specLayers').value + ' layers',
+    'Material': document.getElementById('specMaterial').value,
+    'Copper Weight': document.getElementById('specCopper').value,
+    'Surface Finish': document.getElementById('specFinish').value,
+    'Min Trace/Space': document.getElementById('specTrace').value + ' / ' + document.getElementById('specTrace').value + ' mils',
+    'Smallest Drill': document.getElementById('specDrill').value + ' mils',
+    'IPC Class': document.getElementById('specIPC').value,
+    'Board Thickness': document.getElementById('specThickness').options[document.getElementById('specThickness').selectedIndex].text,
+    'Quantity': parseInt(document.getElementById('specQty').value).toLocaleString() + ' pcs',
+    'Lead Time': document.getElementById('specLead').value + ' business days'
+  };
+  const grid = document.getElementById('specSummaryGrid');
+  grid.innerHTML = '';
+  for (const [k, v] of Object.entries(data)) {
+    grid.innerHTML += `<div class="spec-key">${k}</div><div class="spec-val">${v}</div>`;
+  }
+  markComplete(2);
+}
+
+// Quiz system
+const quizAnswers = {
+  quiz1: "Correct. ENIG (Electroless Nickel Immersion Gold) provides excellent shelf life (12+ months), a flat surface ideal for fine-pitch BGA and QFP components, and good solderability. While more expensive than HASL or OSP, its reliability at scale makes it the industry standard for high-volume consumer electronics.",
+  quiz2: "Exactly right. Incomplete specs are the #1 cause of procurement delays. When a fab house receives ambiguous drawings or missing parameters, they must issue engineering queries (EQs), which add 2-5 days per round. A complete commodity template eliminates this entirely.",
+  quiz3: "Correct. When prices are within 5%, the cost difference is marginal. Lead time reliability (on-time delivery rate) and quality track record (yield rate, defect PPM) are far better predictors of total cost of ownership. A supplier who ships late or ships defects costs far more than a 5% price premium.",
+  quiz4: "Correct. IPC Class 3 demands tighter tolerances, more rigorous inspection, and higher manufacturing standards — which increases cost 20-40%. It's justified for applications where failure could endanger life or cause mission failure: medical implants, avionics, military systems, and safety-critical automotive (ADAS, braking). For consumer electronics, Class 2 is typically sufficient."
+};
+const quizWrong = {
+  quiz1: "Not quite. While OSP is cheapest, it has a limited shelf life (6 months). HASL creates uneven surfaces problematic for fine-pitch parts. Immersion Silver is excellent but costlier. ENIG offers the best balance of cost, shelf life, and compatibility with modern assembly processes.",
+  quiz2: "That can cause delays, but the most common root cause is incomplete or ambiguous specifications. When suppliers must send engineering queries to clarify missing details, it adds days or weeks to the procurement cycle. This is exactly why commodity templates matter.",
+  quiz3: "Not the best approach. When quotes are within 5%, price should not be the primary differentiator. Lead time reliability and quality track record are better predictors of true cost. A late shipment or quality escape costs far more than 5% savings.",
+  quiz4: "Not quite. IPC Class 3 adds 20-40% to board cost and is only justified for high-reliability applications: medical, aerospace, military, and safety-critical automotive. Over-specifying IPC class is a common and expensive mistake in PCB procurement."
+};
+
+function answerQuiz(quizId, btn, isCorrect) {
+  const quiz = document.getElementById(quizId);
+  quiz.querySelectorAll('.quiz-option').forEach(o => {
+    o.classList.add('disabled');
+    if (o === btn) o.classList.add(isCorrect ? 'correct' : 'wrong');
+  });
+  const fb = document.getElementById(quizId + '-feedback');
+  fb.textContent = isCorrect ? quizAnswers[quizId] : quizWrong[quizId];
+  fb.className = 'quiz-feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+  if (isCorrect) { score++; document.getElementById('scoreDisplay').textContent = score; }
+  markComplete(parseInt(quiz.closest('.section').dataset.section));
+}
+
+// Cost Calculator
+const layerOpts = [2, 4, 6, 8];
+const matOpts = ['FR-4', 'Rogers'];
+const finishOpts = ['HASL', 'ENIG', 'OSP', 'Imm. Silver'];
+const layerMult = [1, 1.8, 2.8, 3.6];
+const matMult = [1, 3.5];
+const finishMult = [1, 1.4, 0.9, 1.3];
+
+function updateCost() {
+  const li = parseInt(document.getElementById('costLayers').value);
+  const mi = parseInt(document.getElementById('costMat').value);
+  const fi = parseInt(document.getElementById('costFinish').value);
+  const vol = parseInt(document.getElementById('costVol').value);
+
+  document.getElementById('costLayerVal').textContent = layerOpts[li] + ' layers';
+  document.getElementById('costMatVal').textContent = matOpts[mi];
+  document.getElementById('costFinishVal').textContent = finishOpts[fi];
+  document.getElementById('costVolVal').textContent = vol.toLocaleString();
+
+  const basePrice = 0.45;
+  const volDiscount = 1 - Math.min(0.55, Math.log10(vol / 100) * 0.2);
+  const unit = basePrice * layerMult[li] * matMult[mi] * finishMult[fi] * volDiscount;
+  const total = unit * vol;
+
+  document.getElementById('unitPrice').textContent = '$' + unit.toFixed(2);
+  document.getElementById('totalCost').textContent = '$' + Math.round(total).toLocaleString();
+
+  drawCostChart(li, mi, fi, unit);
+  markComplete(4);
+}
+
+function drawCostChart(li, mi, fi, unitPrice) {
+  const canvas = document.getElementById('costChart');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const W = rect.width, H = rect.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const pad = { top: 30, right: 20, bottom: 50, left: 20 };
+  const plotW = W - pad.left - pad.right;
+  const plotH = H - pad.top - pad.bottom;
+
+  const factors = [
+    { label: 'Layers', value: layerMult[li], color: '#2B72D7' },
+    { label: 'Material', value: matMult[mi], color: '#F76900' },
+    { label: 'Finish', value: finishMult[fi], color: '#27ae60' },
+    { label: 'Combined', value: unitPrice / 0.45, color: '#000E54' }
+  ];
+
+  const maxVal = Math.max(...factors.map(f => f.value), 1) * 1.2;
+  const barW = plotW / (factors.length * 2 + 1);
+
+  // Title
+  ctx.fillStyle = '#000E54';
+  ctx.font = '700 14px Source Sans 3, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Cost Multiplier Breakdown', W / 2, 18);
+
+  // Grid lines
+  ctx.strokeStyle = '#eee';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + (plotH / 4) * i;
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#707780';
+    ctx.font = '12px Source Sans 3, sans-serif';
+    ctx.textAlign = 'left';
+    const val = maxVal * (1 - i / 4);
+    ctx.fillText(val.toFixed(1) + 'x', pad.left, y - 4);
+  }
+
+  // Bars
+  factors.forEach((f, i) => {
+    const x = pad.left + barW * (i * 2 + 1);
+    const barH = (f.value / maxVal) * plotH;
+    const y = pad.top + plotH - barH;
+
+    ctx.fillStyle = f.color;
+    ctx.beginPath();
+    ctx.roundRect(x, y, barW, barH, [4, 4, 0, 0]);
+    ctx.fill();
+
+    ctx.fillStyle = '#404040';
+    ctx.font = '600 12px Source Sans 3, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(f.label, x + barW / 2, pad.top + plotH + 20);
+    ctx.fillStyle = f.color;
+    ctx.font = '700 13px Source Sans 3, sans-serif';
+    ctx.fillText(f.value.toFixed(1) + 'x', x + barW / 2, y - 6);
+  });
+
+  // Baseline
+  const baseY = pad.top + plotH - (1 / maxVal) * plotH;
+  ctx.strokeStyle = '#e74c3c';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([5, 5]);
+  ctx.beginPath(); ctx.moveTo(pad.left, baseY); ctx.lineTo(W - pad.right, baseY); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#e74c3c';
+  ctx.font = '600 11px Source Sans 3, sans-serif';
+  ctx.textAlign = 'right';
+  ctx.fillText('1.0x baseline', W - pad.right, baseY - 4);
+}
+
+// Ranking
+const rankContainer = document.getElementById('rankContainer');
+
+function moveRank(btn, dir) {
+  const item = btn.closest('.rank-item');
+  if (dir === -1 && item.previousElementSibling) {
+    rankContainer.insertBefore(item, item.previousElementSibling);
+  } else if (dir === 1 && item.nextElementSibling) {
+    rankContainer.insertBefore(item.nextElementSibling, item);
+  }
+  item.classList.add('selected');
+  setTimeout(() => item.classList.remove('selected'), 300);
+  updateRankNums();
+}
+
+function updateRankNums() {
+  rankContainer.querySelectorAll('.rank-item').forEach((item, i) => {
+    item.querySelector('.rank-num').textContent = i + 1;
+  });
+}
+
+function checkRanking() {
+  const ideal = ['quality', 'leadtime', 'certs', 'dfm', 'price', 'moq'];
+  const current = [...rankContainer.querySelectorAll('.rank-item')].map(i => i.dataset.id);
+  let matches = 0;
+  current.forEach((id, i) => { if (id === ideal[i]) matches++; });
+
+  const fb = document.getElementById('rankFeedback');
+  if (matches >= 4) {
+    fb.style.background = 'rgba(39,174,96,0.1)';
+    fb.style.color = '#27ae60';
+    fb.innerHTML = `<strong>Strong alignment!</strong> (${matches}/6 match) Quality and yield rate should always lead — a defective board costs far more than price savings. Lead time reliability comes next because production line stoppages are catastrophic. Certifications gate whether a supplier can even be considered. DFM support prevents costly redesigns. Price and MOQ flexibility, while important, are the most negotiable factors.`;
+  } else {
+    fb.style.background = 'rgba(247,105,0,0.1)';
+    fb.style.color = 'var(--su-orange-dark)';
+    fb.innerHTML = `<strong>${matches}/6 match.</strong> Suggested ranking: (1) Quality/Yield — defects are the costliest outcome, (2) Lead Time Reliability — late boards stop production, (3) Certifications — non-negotiable gate criteria, (4) DFM Support — prevents redesign cycles, (5) Unit Price — negotiable and often converges across suppliers, (6) MOQ Flexibility — important but least strategic.`;
+  }
+  fb.classList.add('show');
+  markComplete(5);
+}
+
+// RFQ Toggles
+function toggleRFQ(checkbox, contentId) {
+  const content = document.getElementById(contentId);
+  content.classList.toggle('show', checkbox.checked);
+  updateCompleteness();
+  markComplete(6);
+}
+
+function updateCompleteness() {
+  const checks = document.querySelectorAll('#rfqToggles input[type="checkbox"]');
+  const on = [...checks].filter(c => c.checked).length;
+  const pct = Math.round((on / checks.length) * 100);
+  document.getElementById('completenessLabel').textContent = pct + '% Complete';
+  document.getElementById('completenessFill').style.width = pct + '%';
+}
+
+// Init
+markComplete(1);
+updateSpec();
+updateCost();
+window.addEventListener('resize', () => { updateCost(); });
+</script>
+
+</body>
+</html>
