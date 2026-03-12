@@ -318,7 +318,7 @@ a:hover { color: var(--orange-light); }
     margin-bottom: var(--spacing-md);
 }
 
-.hero-title { color: #fff; margin-bottom: var(--spacing-md); }
+.hero-title { color: #fff; margin-bottom: var(--spacing-md); font-size: clamp(4.2rem, 10vw, 7.5rem); line-height: 0.9; }
 .hero-region { font-size: calc(1em + 12px); display: block; }
 
 .hero-tagline {
@@ -343,7 +343,7 @@ a:hover { color: var(--orange-light); }
 .hero-description {
     font-size: 1.05rem;
     color: rgba(255, 255, 255, 0.85);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: 2rem;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -717,6 +717,35 @@ a:hover { color: var(--orange-light); }
 .ny-map { max-width: 180px; height: auto; opacity: 0.5; filter: brightness(1.5); flex-shrink: 0; }
 
 /* ==========================================
+   New York Roots Section
+   ========================================== */
+.ny-roots {
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+    background: var(--cream);
+}
+.ny-roots-content {
+    display: flex;
+    gap: var(--spacing-xl);
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.ny-roots-text {
+    flex: 1;
+}
+.ny-roots-text p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-sm);
+}
+.ny-roots .ny-map {
+    max-width: 200px;
+    opacity: 0.6;
+    filter: none;
+    flex-shrink: 0;
+}
+
+/* ==========================================
    Industries Section
    ========================================== */
 .industries {
@@ -918,6 +947,8 @@ a:hover { color: var(--orange-light); }
     .about-cta-content { flex-direction: column; text-align: center; gap: var(--spacing-md); }
     .about-cta-text-wrapper { min-width: auto; }
     .about-cta-text { margin-bottom: var(--spacing-sm); }
+    .ny-roots-content { flex-direction: column; text-align: center; }
+    .ny-roots .ny-map { max-width: 150px; margin: 0 auto; }
     .ny-map { max-width: 120px; margin: 0 auto; margin-bottom: 0; }
     
     /* Switch button to filled orange style for better mobile appearance */
@@ -943,4 +974,104 @@ a:hover { color: var(--orange-light); }
     }
     .hero-divider svg { height: 60px; }
     .proto-card { flex-direction: column; }
+}
+
+/* ==========================================
+   Section Illustrations (unDraw SVGs)
+   ========================================== */
+.section-illustration {
+    max-width: 100%;
+    height: auto;
+    opacity: 0.9;
+}
+
+/* Hero illustration - side by side with text */
+.hero-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+.hero-text-block {
+    flex: 1 1 60%;
+}
+.hero-illustration {
+    flex: 0 1 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hero-illustration .section-illustration {
+    max-width: 300px;
+    filter: drop-shadow(0 10px 30px rgba(30, 73, 8, 0.15));
+}
+
+/* Speaking section illustration */
+.speaking-with-illustration {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+.speaking-text-block {
+    flex: 1;
+}
+.speaking-illustration {
+    flex: 0 1 280px;
+    display: flex;
+    justify-content: center;
+}
+.speaking-illustration .section-illustration {
+    max-width: 260px;
+    filter: drop-shadow(0 8px 25px rgba(30, 73, 8, 0.12));
+}
+
+/* Services header illustration */
+.services-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+.services-illustration {
+    max-width: 220px;
+    filter: drop-shadow(0 8px 20px rgba(30, 73, 8, 0.1));
+}
+
+/* About section illustration */
+.about-illustration {
+    max-width: 200px;
+    margin-left: auto;
+    filter: drop-shadow(0 8px 20px rgba(30, 73, 8, 0.1));
+}
+
+/* Responsive: hide illustrations on small screens */
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-illustration {
+        order: -1;
+        flex: 0 1 auto;
+    }
+    .hero-illustration .section-illustration {
+        max-width: 200px;
+    }
+    .speaking-with-illustration {
+        flex-direction: column;
+        text-align: center;
+    }
+    .speaking-illustration .section-illustration {
+        max-width: 180px;
+    }
+    .services-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .services-illustration {
+        max-width: 180px;
+    }
+    .about-illustration {
+        display: none;
+    }
 }
