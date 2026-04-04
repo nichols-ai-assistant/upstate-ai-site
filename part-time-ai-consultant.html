@@ -35,6 +35,21 @@ layout: none
     <title>Part-Time AI Consultant - Upstate AI</title>
     
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .what-you-get-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .what-you-get-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 800px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -79,7 +94,7 @@ layout: none
             <h2 class="section-title fade-up">What You Get</h2>
             <p class="section-subtitle fade-up" style="max-width: 700px; margin: 0 auto 3rem;">10 flexible hours per month, allocated however you need them. Strategy, execution, training, troubleshooting. We meet you where you are.</p>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
+            <div class="what-you-get-grid">
                 <div class="fade-up" style="text-align: center;">
                     <div style="display: inline-flex; width: 48px; height: 48px; background: var(--orange); border-radius: 12px; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; color: white; margin: 0 auto 1rem;">1</div>
                     <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; color: #1a1a1a;">Monthly Strategic Check-In</h3>
