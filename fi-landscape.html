@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The FI AI Landscape: 400+ vendors, 500+ products. Every AI solution in the community banking and credit union ecosystem, mapped and rated.">
+    <meta name="keywords" content="fintech AI vendors, community bank AI, credit union AI, banking AI landscape, FI AI map, banking technology vendors">
+    <meta name="author" content="Ben Nichols">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KKZRVLYRV0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KKZRVLYRV0');
+    </script>
+
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://stats.g.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="baseurl" content="/upstate-ai-dev">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://up-state-ai.com/fi-landscape">
+    <meta property="og:title" content="The FI AI Landscape | Upstate AI">
+    <meta property="og:description" content="400+ vendors. 500+ products. Every AI solution in the community banking and credit union ecosystem.">
+    <meta property="og:image" content="https://up-state-ai.com/images/og-image.png">
+
+    <title>The FI AI Landscape | Upstate AI</title>
+
+    <link rel="stylesheet" href="css/landing.css">
+    <style>
+        /* ==========================================
+           FI AI Landscape — Page Styles
+           ========================================== */
+
+        /* ---- Hero ---- */
+        .landscape-hero {
+            background: linear-gradient(160deg, var(--forest-dark) 0%, #0e2219 100%);
+            padding: calc(6rem + 60px) 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .landscape-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(255,105,0,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .landscape-hero-inner {
+            position: relative;
+            z-index: 1;
+        }
+        .landscape-eyebrow {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 1.25rem;
+        }
+        .landscape-hero h1 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(3rem, 2rem + 4vw, 5rem);
+            color: var(--warm-white);
+            line-height: 1.05;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+        .landscape-hero h1 .accent { color: var(--orange); }
+        .landscape-subhead {
+            font-size: clamp(1rem, 0.9rem + 0.5vw, 1.2rem);
+            color: rgba(253,252,248,0.7);
+            max-width: 640px;
+            line-height: 1.6;
+            margin-bottom: 0.85rem;
+        }
+        .landscape-hook {
+            font-size: clamp(0.9rem, 0.82rem + 0.4vw, 1.05rem);
+            color: rgba(253,252,248,0.5);
+            max-width: 580px;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+        }
+        .landscape-hook strong {
+            color: rgba(253,252,248,0.75);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* Controls row */
+        .landscape-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+        }
+        .landscape-update-line {
+            font-size: 0.78rem;
+            font-style: italic;
+            color: var(--forest);
+            opacity: 0.6;
+            text-align: left;
+            padding: 0.25rem 0 0.5rem;
+            margin: 0;
+        }
+
+        .landscape-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            justify-content: flex-start;
+        }
+        .landscape-cta-primary {
+            display: inline-block;
+            background: var(--orange);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.65rem 1.4rem;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: opacity 0.15s;
+        }
+        .landscape-cta-primary:hover { opacity: 0.88; }
+
+        /* ---- Category filter bar (sticky, below hero) ---- */
+        .category-filter-bar {
+            position: sticky;
+            top: 60px; /* below navbar */
+            z-index: 100;
+            background: var(--forest-dark);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 0;
+        }
+
+        /* Toggle bar — always visible */
+        @keyframes fi-pulse {
+            0%, 100% { color: #fff; text-shadow: none; transform: scale(1); }
+            50%  { color: var(--orange); text-shadow: 0 0 10px rgba(255,105,0,0.6); transform: scale(1.1); }
+        }
+        .filter-toggle-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+            padding: 0 var(--space-md);
+            max-width: 1200px;
+            margin: 0 auto;
+            cursor: pointer;
+            user-select: none;
+        }
+        .filter-toggle-bar.pulsing .filter-toggle-label {
+            display: inline-block;
+            animation: fi-pulse 1.6s ease-in-out infinite;
+        }
+        .filter-toggle-left {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .filter-toggle-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .filter-toggle-arrow {
+            font-size: 0.65rem;
+            color: rgba(253,252,248,0.5);
+            transition: transform 0.2s ease;
+        }
+        .filter-toggle-bar[aria-expanded="true"] .filter-toggle-arrow {
+            transform: rotate(180deg);
+        }
+
+
+        /* Reset button in the toggle bar */
+        .filter-chips-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .filter-reset-btn {
+            background: transparent;
+            border: 1px solid rgba(45,87,69,0.3);
+            color: rgba(45,87,69,0.65);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s, border-color 0.15s;
+            white-space: nowrap;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+        .filter-reset-btn:hover {
+            background: rgba(45,87,69,0.07);
+            border-color: rgba(45,87,69,0.6);
+            color: rgba(45,87,69,1);
+        }
+
+        /* Global empty state */
+        .landscape-empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 1rem;
+            text-align: center;
+        }
+        .landscape-empty-state svg {
+            color: var(--forest-dark);
+            margin-bottom: 1.25rem;
+            opacity: 0.55;
+        }
+        .landscape-empty-state h3 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--forest-dark);
+            margin: 0 0 0.5rem;
+        }
+        .landscape-empty-state p {
+            font-size: 0.95rem;
+            color: rgba(45,87,69,0.55);
+            margin: 0 0 1.5rem;
+        }
+        .landscape-empty-reset-btn {
+            background: var(--orange);
+            border: none;
+            color: #fff;
+            font-size: 0.875rem;
+            font-weight: 700;
+            padding: 0.6rem 1.4rem;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .landscape-empty-reset-btn:hover { background: #e06000; }
+
+        /* Collapsible panel */
+        .filter-panel {
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.2s ease;
+            max-height: 0;
+            opacity: 0;
+        }
+        .filter-panel.expanded {
+            max-height: 1400px; /* enough for all rows wrapping on mobile */
+            opacity: 1;
+        }
+
+        /* Search row inside the filter panel */
+        .filter-search-row {
+            display: flex;
+            align-items: center;
+            padding: 1.35rem var(--space-md);
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .filter-search-wrap {
+            position: relative;
+            flex: 1;
+            max-width: 340px;
+            min-width: 180px;
+        }
+        .filter-search-wrap svg {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(253,252,248,0.4);
+            pointer-events: none;
+        }
+        #vendor-search {
+            width: 100%;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: var(--radius-md);
+            color: var(--warm-white);
+            font-size: 0.85rem;
+            padding: 0.4rem 0.85rem 0.4rem 2.2rem;
+            outline: none;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+        #vendor-search::placeholder { color: rgba(253,252,248,0.4); }
+        #vendor-search:focus { border-color: rgba(255,105,0,0.5); }
+
+        /* Segment buttons inside filter panel */
+        .seg-filter-btn {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(253,252,248,0.7);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            white-space: nowrap;
+        }
+        .seg-filter-btn:hover {
+            background: rgba(255,255,255,0.14);
+            color: var(--warm-white);
+        }
+        .seg-filter-btn.active {
+            background: var(--orange);
+            border-color: var(--orange);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(255,105,0,0.4);
+        }
+        /* Desktop: show divider between toggle bar and panel only when expanded */
+        .filter-toggle-bar + .filter-panel.expanded {
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .category-filter-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+            padding: 1.1rem var(--space-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .category-filter-row + .category-filter-row {
+            padding-top: 0.6rem;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .cat-filter-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(253,252,248,0.35);
+            width: 88px;
+            flex-shrink: 0;
+            padding-top: 0.35rem; /* align with first pill */
+            white-space: nowrap;
+        }
+        .filter-row-controls {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            align-items: center;
+            align-content: flex-start;
+            justify-content: flex-start;
+            min-width: 0;
+        }
+        .cat-filter-btn {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(253,252,248,0.7);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            white-space: nowrap;
+        }
+        .cat-filter-btn:hover {
+            background: rgba(255,255,255,0.14);
+            color: var(--warm-white);
+        }
+        .cat-filter-btn.active {
+            background: var(--orange);
+            border-color: var(--orange);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(255,105,0,0.4);
+        }
+        .tier-filter-btn.active-1  { background: #9ca3af; border-color: #9ca3af; color: #fff; }
+        .tier-filter-btn.active-2  { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+        .tier-filter-btn.active-3  { background: #14b8a6; border-color: #14b8a6; color: #fff; }
+        .tier-filter-btn.active-4  { background: #22c55e; border-color: #22c55e; color: #fff; }
+        .tier-filter-btn.active-5  { background: var(--orange); border-color: var(--orange); color: #fff; }
+        .tier-filter-btn.active-6  { background: var(--forest-dark); border-color: var(--forest-accent); color: var(--warm-white); box-shadow: 0 0 0 1px var(--forest-accent); }
+
+        /* ---- Active filter chips ---- */
+        .filter-chips-bar {
+            padding: 0.75rem 0;
+            min-height: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .filter-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--orange-glow);
+            border: 1px solid rgba(255,105,0,0.3);
+            color: var(--orange);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+        }
+        .filter-chip-dismiss {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--orange);
+            font-size: 1rem;
+            line-height: 1;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            opacity: 0.7;
+            transition: opacity 0.15s;
+        }
+        .filter-chip-dismiss:hover { opacity: 1; }
+
+        /* ---- Main grid area ---- */
+        .landscape-body {
+            background: var(--warm-white);
+            padding: 3rem 0 6rem;
+        }
+
+        /* ---- T1 category section ---- */
+        .t1-section {
+            margin-bottom: 4rem;
+        }
+        .t1-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--forest-dark);
+            margin-bottom: 2rem;
+            cursor: pointer;
+            user-select: none;
+        }
+        .t1-header:hover .t1-title { color: var(--orange); }
+        .t1-title {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.1rem);
+            color: var(--forest-dark);
+            margin: 0;
+            transition: color 0.2s;
+        }
+        .t1-header.active .t1-title { color: var(--orange); }
+        .t1-count {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--forest-medium);
+            background: rgba(45,87,69,0.1);
+            padding: 0.2rem 0.65rem;
+            border-radius: 999px;
+        }
+
+        /* ---- T2 subcategory block ---- */
+        .t2-block {
+            margin-bottom: 2rem;
+        }
+        .t2-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            user-select: none;
+        }
+        .t2-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--forest-medium);
+            transition: color 0.2s;
+        }
+        .t2-header:hover .t2-title { color: var(--orange); }
+        .t2-header.active .t2-title { color: var(--orange); }
+        .t2-header.active .t2-line { background: var(--orange); }
+        .t2-line {
+            flex: 1;
+            height: 1px;
+            background: rgba(45,87,69,0.2);
+            transition: background 0.2s;
+        }
+        .t2-count {
+            font-size: 0.73rem;
+            color: rgba(45,87,69,0.5);
+            font-weight: 600;
+        }
+
+        /* ---- Vendor card grid ---- */
+        .vendor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 0.75rem;
+        }
+
+        /* ---- Individual vendor card ---- */
+        .vendor-card {
+            position: relative;
+            background: var(--warm-white);
+            border: 1.5px solid rgba(45,87,69,0.18);
+            border-radius: var(--radius-md);
+            padding: 0.75rem 0.5rem 0.6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+            box-shadow: var(--shadow-sm);
+            min-height: 90px;
+        }
+        .vendor-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(26,58,46,0.13);
+            border-color: rgba(45,87,69,0.35);
+        }
+        .vendor-card.dimmed {
+            opacity: 0.2;
+            filter: grayscale(0.3);
+            pointer-events: none;
+        }
+        .vendor-card.filter-source {
+            box-shadow: 0 0 0 2px var(--orange), 0 8px 24px rgba(26,58,46,0.13);
+            border-color: var(--orange);
+            z-index: 1;
+        }
+        .vendor-card.filter-source:hover {
+            box-shadow: 0 0 0 2px var(--orange), 0 12px 28px rgba(26,58,46,0.18);
+        }
+        .vendor-card.deprecated {
+            opacity: 0.4;
+            filter: grayscale(1);
+            cursor: default;
+        }
+        .vendor-card.defunct {
+            opacity: 0.35;
+            filter: grayscale(1) sepia(0.15);
+            cursor: default;
+        }
+        .defunct-badge {
+            display: inline-block;
+            background: rgba(180,0,0,0.25);
+            color: #ff9999;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 3px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Logo area */
+        .vendor-logo-wrap {
+            width: 56px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            flex-shrink: 0;
+        }
+        .vendor-logo-wrap img {
+            max-width: 56px;
+            max-height: 40px;
+            object-fit: contain;
+        }
+        .vendor-initials {
+            width: 56px;
+            height: 40px;
+            background: var(--forest-dark);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: rgba(253,252,248,0.85);
+            letter-spacing: 0.03em;
+        }
+
+        /* Product name label */
+        .vendor-name {
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--forest-dark);
+            text-align: center;
+            line-height: 1.3;
+            width: 100%;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            word-break: break-word;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Acquirer label on deprecated vendor cards */
+        .card-acquirer {
+            font-size: 0.58rem;
+            color: rgba(253,252,248,0.55);
+            text-align: center;
+            width: 100%;
+            margin-top: 0.1rem;
+            margin-bottom: 0.2rem;
+            line-height: 1.3;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        /* Adoption badge — colored dot only, no text */
+        .adoption-badge {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            font-size: 0;      /* hide any text */
+            line-height: 0;
+            padding: 0;
+            border: none;
+        }
+        /* Tier color scheme: T1=gray, T2=blue, T3=teal, T4=green, T5=orange, T6=forest green */
+        .badge-1 { background: #9ca3af; }
+        .badge-2 { background: #3b82f6; }
+        .badge-3 { background: #14b8a6; }
+        .badge-4 { background: #22c55e; }
+        .badge-5 { background: #f97316; }
+        .badge-6 { background: #166534; }
+
+        /* Segment badge (inline, below product name) */
+        .segment-badge {
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 2px 6px;
+            border-radius: 3px;
+            line-height: 1.4;
+            white-space: nowrap;
+            background: rgba(35,72,55,0.45);
+            color: rgba(253,252,248,0.95);
+            border: none;
+        }
+
+        /* Modal tier badge */
+        .modal-tier-badge {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+            color: #fff;
+            letter-spacing: 0.02em;
+        }
+        .modal-tier-badge-6 { color: rgba(253,252,248,0.95); }
+
+        /* MCP badge (below segment badge) */
+        .mcp-badge {
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 2px 6px;
+            border-radius: 3px;
+            line-height: 1.4;
+            background: #ede9fe;
+            color: #5b21b6;
+            white-space: nowrap;
+        }
+
+        /* Badge row at bottom of card */
+        .card-badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            justify-content: center;
+            margin-top: auto;
+            padding-top: 0.25rem;
+        }
+
+        /* Tooltip */
+        /* Empty state */
+        .t2-empty {
+            font-size: 0.82rem;
+            color: rgba(45,87,69,0.4);
+            font-style: italic;
+            padding: 0.5rem 0;
+        }
+
+        /* ---- Product detail modal ---- */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            z-index: 2000;
+            cursor: pointer;
+        }
+        .modal-backdrop.open { display: block; }
+
+        .product-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2001;
+            background: var(--warm-white);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+            width: min(560px, 92vw);
+            max-height: 85vh;
+            overflow: hidden;
+            padding: 0;
+            flex-direction: column;
+        }
+        .product-modal.open { display: flex; }
+
+        /* Category modal variant */
+        .cat-modal { width: min(620px, 92vw); }
+        .cat-modal-eyebrow {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--forest);
+            opacity: 0.5;
+            margin-bottom: 0.4rem;
+        }
+        .cat-modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--forest-dark);
+            margin: 0 0 1rem;
+        }
+        .cat-modal-section { margin-bottom: 1.1rem; }
+        .cat-modal-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--forest);
+            opacity: 0.55;
+            margin-bottom: 0.3rem;
+        }
+        .cat-modal-text {
+            font-size: 0.92rem;
+            line-height: 1.65;
+            color: var(--text);
+        }
+        .cat-modal-show-btn {
+            display: inline-block;
+            margin-top: 1.2rem;
+            background: var(--forest);
+            color: var(--warm-white);
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.65rem 1.4rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+        .cat-modal-show-btn:hover { opacity: 0.85; }
+
+        .modal-close-btn {
+            position: static;
+            align-self: flex-end;
+            margin: 0.75rem 0.75rem 0 0;
+            background: rgba(45,87,69,0.08);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--forest-dark);
+            transition: background 0.15s;
+            flex-shrink: 0;
+        }
+        .modal-close-btn:hover { background: rgba(45,87,69,0.16); }
+
+        /* Scrollable content area inside modal */
+        #modal-content, #cat-modal-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 2rem 2rem;
+            min-height: 0;
+        }
+
+        .modal-vendor-logo {
+            width: 64px;
+            height: 48px;
+            object-fit: contain;
+            margin-bottom: 0.75rem;
+        }
+        .modal-vendor-initials {
+            width: 64px;
+            height: 48px;
+            background: var(--forest-dark);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: rgba(253,252,248,0.85);
+            margin-bottom: 0.75rem;
+        }
+        .modal-product-name {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--forest-dark);
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+        .modal-vendor-name {
+            font-size: 0.85rem;
+            color: var(--forest-medium);
+            margin-bottom: 1rem;
+        }
+        .modal-description {
+            font-size: 0.95rem;
+            color: var(--text-body);
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+        }
+        .modal-meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+        .modal-meta-item {
+            background: rgba(45,87,69,0.05);
+            border-radius: var(--radius-sm);
+            padding: 0.6rem 0.85rem;
+        }
+        .modal-meta-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--forest-medium);
+            margin-bottom: 0.25rem;
+        }
+        .modal-meta-value {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--forest-dark);
+        }
+        .modal-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--forest-dark);
+            color: var(--warm-white);
+            font-size: 0.875rem;
+            font-weight: 600;
+            padding: 0.6rem 1.25rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .modal-link:hover { background: var(--forest-medium); color: var(--warm-white); }
+
+        /* Competitor / Ecosystem action buttons */
+        .modal-action-row {
+            display: flex;
+            gap: 0.65rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.25rem;
+        }
+        .modal-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            padding: 0.55rem 1.1rem;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, opacity 0.2s;
+        }
+        .modal-action-btn:disabled {
+            opacity: 0.38;
+            cursor: not-allowed;
+        }
+        .modal-btn-competitors {
+            background: rgba(255,105,0,0.12);
+            color: #c2410c;
+            border: 1.5px solid rgba(255,105,0,0.35);
+        }
+        .modal-btn-competitors:not(:disabled):hover {
+            background: rgba(255,105,0,0.22);
+        }
+        .modal-btn-ecosystem {
+            background: rgba(45,87,69,0.1);
+            color: var(--forest-dark);
+            border: 1.5px solid rgba(45,87,69,0.3);
+        }
+        .modal-btn-ecosystem:not(:disabled):hover {
+            background: rgba(45,87,69,0.18);
+        }
+
+        /* Competitor / Ecosystem filter chips */
+        .filter-chip-competitors {
+            background: rgba(255,105,0,0.12);
+            border: 1px solid rgba(255,105,0,0.3);
+            color: #c2410c;
+        }
+        .filter-chip-competitors .filter-chip-dismiss { color: #c2410c; }
+        .filter-chip-ecosystem {
+            background: rgba(45,87,69,0.1);
+            border: 1px solid rgba(45,87,69,0.25);
+            color: var(--forest-dark);
+        }
+        .filter-chip-ecosystem .filter-chip-dismiss { color: var(--forest-dark); }
+
+        @media (max-width: 768px) {
+            .product-modal {
+                top: auto;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                transform: none;
+                width: 100%;
+                border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+                max-height: 80vh;
+            }
+            .modal-meta-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 768px) {
+            .vendor-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 0.6rem; }
+            .category-filter-row { padding: 0.75rem 1rem; gap: 0.3rem; flex-direction: column; align-items: flex-start; }
+            .filter-search-row { padding: 0.75rem 1rem; flex-direction: column; align-items: flex-start; }
+            .cat-filter-label { width: auto; padding-top: 0; margin-bottom: 0.3rem; }
+            .filter-row-controls { width: 100%; }
+        }
+        @media (max-width: 480px) {
+            .vendor-grid { grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); }
+        }
+
+        /* On desktop, make the toggle bar a bit more subtle — it's primarily a mobile aid */
+        @media (min-width: 1024px) {
+            .filter-toggle-bar {
+                height: 36px;
+            }
+        }
+
+        /* Disclaimer button in filter toggle bar */
+        .disclaimer-info-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(253,252,248,0.45);
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.18rem 0.6rem;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s, border-color 0.15s;
+            white-space: nowrap;
+            flex-shrink: 0;
+            line-height: 1.5;
+        }
+        .disclaimer-info-btn:hover {
+            background: rgba(255,255,255,0.07);
+            border-color: rgba(255,255,255,0.35);
+            color: rgba(253,252,248,0.75);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand"><a href="index">
+                <img src="images/logo.png" alt="Upstate AI Logo" class="logo"></a>
+            </div>
+            <ul class="nav-menu">
+
+                <li><a href="free-training">Complimentary Training</a></li>
+                <li><a href="index#services">Services</a></li>
+                <li><a href="index#about">About</a></li>
+                <li><a href="blog">Blog</a></li>
+                <li><a href="https://calendar.app.google/oNGjY8ioWCqiTkfe7" target="_blank" rel="noopener" class="btn-nav">Book a Call</a></li>
+            </ul>
+            <button class="mobile-toggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="landscape-hero">
+        <div class="container landscape-hero-inner">
+            <span class="landscape-eyebrow">&#x2B25;&nbsp;&nbsp;Analyst Intelligence&nbsp;&nbsp;&#x2B25;</span>
+            <h1>The <span class="accent">FI AI</span> Landscape</h1>
+            <p class="landscape-subhead" id="hero-subhead">Loading&hellip;</p>
+            <p class="landscape-hook"><strong>Every software vendor you already buy from is now an AI company.</strong><br>Most institutions don&rsquo;t know what they&rsquo;re actually buying.</p>
+            <div class="landscape-cta-row">
+                <a href="https://calendar.app.google/oNGjY8ioWCqiTkfe7" target="_blank" rel="noopener" class="landscape-cta-primary">Schedule an AI Evaluation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CATEGORY FILTER BAR ==================== -->
+    <div class="category-filter-bar" id="category-filter-bar">
+        <!-- Toggle bar — always visible -->
+        <div class="filter-toggle-bar" id="filter-toggle-bar" role="button" tabindex="0"
+             aria-expanded="false" aria-controls="filter-panel" aria-label="Toggle filters">
+            <div class="filter-toggle-left">
+                <span class="filter-toggle-label">Filters</span>
+                <span class="filter-toggle-arrow" aria-hidden="true">&#x25BC;</span>
+            </div>
+            <button class="disclaimer-info-btn" id="disclaimer-btn" aria-label="View disclaimer">Disclaimer</button>
+        </div>
+        <!-- Collapsible panel -->
+        <div class="filter-panel" id="filter-panel">
+            <!-- Search row -->
+            <div class="filter-search-row">
+                <span class="cat-filter-label">Search</span>
+                <div class="filter-row-controls">
+                    <div class="filter-search-wrap">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        <input type="search" id="vendor-search" placeholder="Search products&hellip;" autocomplete="off" aria-label="Search products and vendors">
+                    </div>
+                    <button id="filter-apply-btn" class="seg-filter-btn" style="margin-left:0.5rem;flex-shrink:0;" aria-label="Apply filters and close panel">Apply</button>
+                </div>
+            </div>
+            <!-- Category row -->
+            <div class="category-filter-row" id="t1-filter-row">
+                <span class="cat-filter-label">Category</span>
+                <div class="filter-row-controls" id="t1-filter-controls"><!-- Populated by JS --></div>
+            </div>
+            <!-- Tier row -->
+            <div class="category-filter-row" id="tier-filter-row">
+                <span class="cat-filter-label">Tier</span>
+                <div class="filter-row-controls">
+                    <button class="cat-filter-btn tier-filter-btn active" data-tier="all">All</button>
+                    <button class="cat-filter-btn tier-filter-btn" data-tier="1" title="Tier 1 — Emerging">T1 Emerging</button>
+                    <button class="cat-filter-btn tier-filter-btn" data-tier="2" title="Tier 2 — Growing">T2 Growing</button>
+                    <button class="cat-filter-btn tier-filter-btn" data-tier="3" title="Tier 3 — Moderate">T3 Moderate</button>
+                    <button class="cat-filter-btn tier-filter-btn" data-tier="4" title="Tier 4 — Established">T4 Established</button>
+                    <button class="cat-filter-btn tier-filter-btn" data-tier="5" title="Tier 5 — Dominant">T5 Dominant</button>
+                    <button class="cat-filter-btn tier-filter-btn" data-tier="6" title="Tier 6 — Ubiquitous">T6 Ubiquitous</button>
+                </div>
+            </div>
+            <!-- Segment row -->
+            <div class="category-filter-row" id="segment-filter-row">
+                <span class="cat-filter-label">Segment</span>
+                <div class="filter-row-controls">
+                    <button class="seg-filter-btn active" data-segment="all">All</button>
+                    <button class="seg-filter-btn" data-segment="banks">Banks Only</button>
+                    <button class="seg-filter-btn" data-segment="credit_unions">Credit Unions Only</button>
+                    <button class="seg-filter-btn" data-segment="both">Both</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ACTIVE FILTER CHIPS ==================== -->
+    <div style="background: var(--cream); border-bottom: 1px solid rgba(45,87,69,0.15);">
+        <div class="container">
+            <div class="filter-chips-row">
+                <div class="filter-chips-bar" id="filter-bar" aria-live="polite"></div>
+                <button class="filter-reset-btn" id="filter-reset-btn" style="display:none" aria-label="Reset all filters">Reset</button>
+            </div>
+            <p class="landscape-update-line" id="meta-line"></p>
+        </div>
+    </div>
+
+    <!-- ==================== LANDSCAPE GRID ==================== -->
+    <section class="landscape-body">
+        <div class="container" id="landscape-root">
+            <p style="color: var(--text-muted); font-style:italic;">Loading landscape data&hellip;</p>
+        </div>
+    </section>
+
+    <!-- ==================== PRODUCT DETAIL MODAL ==================== -->
+    <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true"></div>
+    <div class="product-modal" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-product-name">
+        <button class="modal-close-btn" id="modal-close" aria-label="Close">&#x2715;</button>
+        <div id="modal-content"><!-- populated by JS --></div>
+    </div>
+
+    <!-- ==================== CATEGORY INFO MODAL ==================== -->
+    <div class="modal-backdrop" id="cat-modal-backdrop" aria-hidden="true"></div>
+    <div class="product-modal cat-modal" id="cat-modal" role="dialog" aria-modal="true" aria-labelledby="cat-modal-title">
+        <button class="modal-close-btn" id="cat-modal-close" aria-label="Close">&#x2715;</button>
+        <div id="cat-modal-content"><!-- populated by JS --></div>
+    </div>
+
+    <!-- ==================== DISCLAIMER MODAL ==================== -->
+    <div class="modal-backdrop" id="disclaimer-backdrop" aria-hidden="true"></div>
+    <div class="product-modal" id="disclaimer-modal" role="dialog" aria-modal="true" aria-labelledby="disclaimer-modal-title">
+        <button class="modal-close-btn" id="disclaimer-close" aria-label="Close">&#x2715;</button>
+        <div style="flex:1;overflow-y:auto;padding:0 2rem 2rem;min-height:0;">
+            <h2 class="modal-product-name" id="disclaimer-modal-title" style="font-size:1.25rem;margin-bottom:1rem;">About This Index</h2>
+            <p class="modal-description">Upstate AI does not endorse any of the companies listed and maintains no commercial relationships with vendors in this index. All information is gathered from publicly available sources including vendor websites, partner forums, tradeshow events, press releases, and social media. This map is provided for informational purposes only.</p>
+            <p class="modal-description" style="margin-bottom:0;">Are you a vendor? Send corrections to <a href="mailto:ben@up-state-ai.com?subject=FI%20AI%20Landscape%20Correction" style="color:var(--orange);">ben@up-state-ai.com</a>.</p>
+        </div>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="images/logo-white.png" alt="Upstate AI Logo" class="footer-logo">
+                    <p>Put AI to Work</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index#services">Services</a>
+                    <a href="index#about">About</a>
+                    <a href="blog">Blog</a>
+                    <a href="https://calendar.app.google/oNGjY8ioWCqiTkfe7" target="_blank" rel="noopener">Contact</a>
+                    <a href="privacy">Privacy Policy</a>
+                    <a href="#" onclick="window.CookieConsent && window.CookieConsent.show(); return false;">Cookie Settings</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Upstate AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="css/cookie-consent.css">
+    <script src="js/cookie-consent.js"></script>
+
+    <!-- ==================== LANDSCAPE SCRIPT ==================== -->
+    <script>
+    (function () {
+        'use strict';
+
+        // ---- Base URL (for GitHub Pages sub-path support) ----
+        var BASE_URL = (document.head.querySelector('meta[name="baseurl"]') || {}).content || '';
+
+        // ---- State ----
+        var state = {
+            data: null,
+            segment: 'all',         // 'all' | 'banks' | 'credit_unions'
+            search: '',
+            activeT2: null,         // category code string, or null
+            activeT1: null,         // T1 code or null
+            activeTier: null,       // 1-6 or null
+            competitorFilter: null,    // { productId, productName } or null
+            ecosystemFilter: null,     // { productId, productName } or null
+            competitorSourceT2s: null, // Set of T2 codes the source product belongs to
+            ecosystemSourceT2s: null   // Set of T2 codes the source product belongs to
+        };
+
+        // ---- Product lookup map (product_id -> product, populated after data load) ----
+        var productById = {};        // product_id -> product obj
+        var vendorByProductId = {};  // product_id -> vendor_id
+        var t2sByProductId = {};     // product_id -> Array of T2 codes the product appears in
+        var vendorById = {};         // vendor_id -> { vendor, t1, t2 } (first occurrence)
+        var t2LabelByCode = {};      // T2 code -> display name
+
+        function buildProductMaps() {
+            productById = {};
+            vendorByProductId = {};
+            t2sByProductId = {};
+            vendorById = {};
+            t2LabelByCode = {};
+            if (!state.data) return;
+            for (var i = 0; i < state.data.categories.length; i++) {
+                var cat = state.data.categories[i];
+                var subs = cat.subcategories;
+                for (var j = 0; j < subs.length; j++) {
+                    var sub = subs[j];
+                    var t2Code = sub.code;
+                    t2LabelByCode[t2Code] = sub.name;
+                    var vendors = sub.vendors;
+                    for (var k = 0; k < vendors.length; k++) {
+                        var v = vendors[k];
+                        if (!vendorById[v.vendor_id]) {
+                            vendorById[v.vendor_id] = { vendor: v, t1: cat, t2: sub };
+                        }
+                        for (var m = 0; m < v.products.length; m++) {
+                            var p = v.products[m];
+                            productById[p.product_id] = p;
+                            vendorByProductId[p.product_id] = v.vendor_id;
+                            if (!t2sByProductId[p.product_id]) t2sByProductId[p.product_id] = [];
+                            t2sByProductId[p.product_id].push(t2Code);
+                        }
+                    }
+                }
+            }
+        }
+
+        var TIER_LABELS = {
+            1: 'Tier 1 \u2014 Emerging',
+            2: 'Tier 2 \u2014 Growing',
+            3: 'Tier 3 \u2014 Moderate',
+            4: 'Tier 4 \u2014 Established',
+            5: 'Tier 5 \u2014 Dominant',
+            6: 'Tier 6 \u2014 Ubiquitous'
+        };
+
+        // Segment labels for the modal
+        var MODAL_SEG_LABELS = {
+            banks: 'Banks Only',
+            credit_unions: 'Credit Unions Only',
+            both: 'Banks & Credit Unions'
+        };
+
+        // Tier dot/badge colors
+        var TIER_COLORS = {
+            1: '#9ca3af',
+            2: '#3b82f6',
+            3: '#14b8a6',
+            4: '#22c55e',
+            5: '#f97316',
+            6: '#166534'
+        };
+
+        // ---- Initials helper ----
+        function initials(name) {
+            var words = name.replace(/[,&\.]/g, '').split(/\s+/).filter(Boolean);
+            if (words.length === 1) return words[0].substring(0, 3).toUpperCase();
+            if (words.length === 2) return (words[0][0] + words[1][0]).toUpperCase();
+            return (words[0][0] + words[1][0] + words[2][0]).toUpperCase();
+        }
+
+        function escHtml(str) {
+            return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+        }
+
+        // ---- Get primary product for a vendor entry ----
+        function getPrimaryProduct(vendor) {
+            var primary = vendor.products.find(function(p) { return p.is_primary; });
+            return primary || vendor.products[0] || null;
+        }
+
+        // ---- Get primary tier ----
+        function getPrimaryTier(vendor) {
+            var p = getPrimaryProduct(vendor);
+            if (p && p.pervasiveness_tier) return Number(p.pervasiveness_tier);
+            return vendor.products.reduce(function(max, pr) {
+                var t = Number(pr.pervasiveness_tier);
+                return (t && t > max) ? t : max;
+            }, 0);
+        }
+
+        // ---- Get segment ----
+        function getSegment(vendor) {
+            var segs = vendor.products.map(function(p) { return p.fi_segment; }).filter(Boolean);
+            if (segs.every(function(s) { return s === 'banks'; })) return 'banks';
+            if (segs.every(function(s) { return s === 'credit_unions'; })) return 'credit_unions';
+            return 'both';
+        }
+
+        // ---- Check if a vendor/product is sunset (visually subordinated) ----
+        // Note: 'deprecated' vendors are shown at full opacity so the acquirer URL is reachable.
+        // Only 'sunset' triggers the grayed treatment; no vendors/products currently carry that status.
+        function isDeprecated(vendor) {
+            var primary = getPrimaryProduct(vendor);
+            return (vendor.status === 'sunset') ||
+                   (primary && (primary.status === 'sunset'));
+        }
+
+        // ---- Check if a vendor is defunct (no longer operating) ----
+        function isDefunct(vendor) {
+            return vendor.status === 'defunct';
+        }
+
+        // ---- Check if vendor matches current filters ----
+        function vendorVisible(vendor) {
+            // Always hide defunct vendors
+            if (isDefunct(vendor)) return false;
+            // Source vendor of an active competitor/ecosystem filter always passes through
+            var isSource = (
+                (state.competitorFilter && state.competitorFilter.sourceVendorId === vendor.vendor_id) ||
+                (state.ecosystemFilter && state.ecosystemFilter.sourceVendorId === vendor.vendor_id)
+            );
+            if (isSource) return true;
+            // Competitor filter: vendor must contain at least one product in the competitor_ids list
+            if (state.competitorFilter !== null) {
+                var ids = state.competitorFilter.ids;
+                var hasMatch = vendor.products.some(function(p) {
+                    return ids.indexOf(p.product_id) !== -1;
+                });
+                if (!hasMatch) return false;
+            }
+            // Ecosystem filter: vendor must contain at least one product in the integration_ids list
+            if (state.ecosystemFilter !== null) {
+                var eids = state.ecosystemFilter.ids;
+                var ehasMatch = vendor.products.some(function(p) {
+                    return eids.indexOf(p.product_id) !== -1;
+                });
+                if (!ehasMatch) return false;
+            }
+            // Search: match against product name, vendor name, description
+            if (state.search) {
+                var q = state.search;
+                var vendorMatch = vendor.name.toLowerCase().indexOf(q) !== -1;
+                var productMatch = vendor.products.some(function(p) {
+                    return p.product_name.toLowerCase().indexOf(q) !== -1 ||
+                           (p.description && p.description.toLowerCase().indexOf(q) !== -1);
+                });
+                if (!vendorMatch && !productMatch) return false;
+            }
+            // Segment filter (banks / credit_unions / both)
+            if (state.segment !== 'all') {
+                var segMatch = vendor.products.some(function(p) {
+                    return p.fi_segment === state.segment || p.fi_segment === 'both';
+                });
+                if (!segMatch) return false;
+            }
+            // Tier filter
+            if (state.activeTier !== null) {
+                var tier = getPrimaryTier(vendor);
+                if (Number(tier) !== Number(state.activeTier)) return false;
+            }
+            return true;
+        }
+
+        // ---- Build vendor card HTML ----
+        function buildCard(vendor, t2Code) {
+            var tier = getPrimaryTier(vendor);
+            var seg = getSegment(vendor);
+            var deprecated = isDeprecated(vendor);
+            var defunct = isDefunct(vendor);
+            var primary = getPrimaryProduct(vendor);
+            var productName = primary ? primary.product_name : vendor.name;
+            var hasMcp = primary && primary.mcp_enabled;
+
+            var isFilterSource = (
+                (state.competitorFilter && state.competitorFilter.sourceVendorId === vendor.vendor_id) ||
+                (state.ecosystemFilter && state.ecosystemFilter.sourceVendorId === vendor.vendor_id)
+            );
+            var classes = 'vendor-card';
+            if (deprecated) classes += ' deprecated';
+            if (defunct) classes += ' defunct';
+            if (isFilterSource) classes += ' filter-source';
+
+            var logoHtml;
+            if (vendor.logo_url) {
+                var logoSrc = vendor.logo_url.charAt(0) === '/' ? BASE_URL + vendor.logo_url : vendor.logo_url;
+                logoHtml = '<img src="' + logoSrc + '" alt="' + escHtml(vendor.name) + '" loading="lazy" width="56" height="40">';
+            } else {
+                logoHtml = '<div class="vendor-initials">' + escHtml(initials(vendor.name)) + '</div>';
+            }
+
+            // Tags: suppress all on deprecated/defunct; defunct gets a Defunct badge
+            var badgeHtml = '';
+            var badgeRowHtml = '';
+            if (defunct) {
+                badgeRowHtml = '<div class="card-badge-row"><span class="defunct-badge">Defunct</span></div>';
+            } else if (!deprecated) {
+                if (tier && TIER_LABELS[tier]) {
+                    // Colored dot only — no text
+                    badgeHtml = '<span class="adoption-badge badge-' + tier + '" title="' + escHtml(TIER_LABELS[tier]) + '" aria-label="' + escHtml(TIER_LABELS[tier]) + '"></span>';
+                }
+                // Segment badges: BANK / CU / both shown as two separate badges
+                var segBadge = seg === 'banks'
+                    ? '<span class="segment-badge">BANK</span>'
+                    : seg === 'credit_unions'
+                    ? '<span class="segment-badge">CU</span>'
+                    : '<span class="segment-badge">BANK</span><span class="segment-badge">CU</span>';
+                var mcpBadge = hasMcp ? '<span class="mcp-badge">MCP Enabled</span>' : '';
+                badgeRowHtml = '<div class="card-badge-row">' + segBadge + mcpBadge + '</div>';
+            }
+
+            var acquirerHtml = (deprecated && vendor.acquirer_name)
+                ? '<div class="card-acquirer">Now: ' + escHtml(vendor.acquirer_name) + '</div>'
+                : '';
+
+            return '<div class="' + classes + '" ' +
+                'data-vendor-id="' + vendor.vendor_id + '" ' +
+                'data-t2="' + escHtml(t2Code) + '" ' +
+                'data-name="' + escHtml(vendor.name.toLowerCase()) + '" ' +
+                'data-segment="' + escHtml(seg) + '" ' +
+                'data-tooltip-name="' + escHtml(vendor.name) + '" ' +
+                'data-tooltip-products="' + escHtml(productName) + '">' +
+                badgeHtml +
+                '<div class="vendor-logo-wrap">' + logoHtml + '</div>' +
+                '<span class="vendor-name">' + escHtml(productName) + '</span>' +
+                acquirerHtml +
+                badgeRowHtml +
+                '</div>';
+        }
+
+        // ---- Render the entire landscape ----
+        function render() {
+            var root = document.getElementById('landscape-root');
+            if (!state.data) { root.innerHTML = '<p style="color:var(--text-muted);font-style:italic;">Failed to load data.</p>'; return; }
+
+            var html = '';
+            var cats = state.data.categories;
+            var totalVisible = 0;
+
+            for (var i = 0; i < cats.length; i++) {
+                var cat = cats[i];
+
+                // T1 filter: if activeT1 is set and doesn't match this category, hide entirely
+                if (state.activeT1 !== null && state.activeT1 !== cat.code) continue;
+
+                var t1VendorCount = 0;
+                for (var j = 0; j < cat.subcategories.length; j++) {
+                    var sub = cat.subcategories[j];
+                    if (state.competitorSourceT2s && !state.competitorSourceT2s.has(sub.code)) continue;
+                    if (state.ecosystemSourceT2s && !state.ecosystemSourceT2s.has(sub.code)) continue;
+                    for (var k = 0; k < sub.vendors.length; k++) {
+                        if (vendorVisible(sub.vendors[k])) t1VendorCount++;
+                    }
+                }
+
+                // Hide T1 section entirely if no visible vendors
+                if (t1VendorCount === 0) continue;
+
+                totalVisible += t1VendorCount;
+
+                var t1Active = (state.activeT1 === cat.code) ? ' active' : '';
+                html += '<section class="t1-section" data-t1="' + cat.code + '">';
+                html += '<div class="t1-header' + t1Active + '" data-t1-toggle="' + cat.code + '" tabindex="0" role="button" aria-label="About ' + escHtml(cat.name) + '">';
+                html += '<h2 class="t1-title">' + escHtml(cat.name) + '</h2>';
+                html += '<span class="t1-count">' + t1VendorCount + '</span>';
+                html += '</div>';
+
+                for (var j2 = 0; j2 < cat.subcategories.length; j2++) {
+                    var sub2 = cat.subcategories[j2];
+
+                    // Scope competitor/ecosystem filters to the source product's T2 categories
+                    if (state.competitorSourceT2s && !state.competitorSourceT2s.has(sub2.code)) continue;
+                    if (state.ecosystemSourceT2s && !state.ecosystemSourceT2s.has(sub2.code)) continue;
+
+                    var visibleVendors = sub2.vendors.filter(vendorVisible);
+
+                    // Hide T2 block entirely if no visible vendors
+                    if (visibleVendors.length === 0) continue;
+
+                    visibleVendors.sort(function(a, b) {
+                        var ta = getPrimaryTier(a), tb = getPrimaryTier(b);
+                        if (tb !== ta) return tb - ta;
+                        var pa = getPrimaryProduct(a), pb = getPrimaryProduct(b);
+                        var na = pa ? (pa.product_name || a.name) : a.name;
+                        var nb = pb ? (pb.product_name || b.name) : b.name;
+                        return na.localeCompare(nb);
+                    });
+                    var t2Active = (state.activeT2 === sub2.code) ? ' active' : '';
+
+                    // Dim T2 blocks not matching activeT2 (only when activeT2 is set)
+                    var blockDimmed = (state.activeT2 !== null && state.activeT2 !== sub2.code);
+
+                    html += '<div class="t2-block" data-t2-block="' + sub2.code + '"' + (blockDimmed ? ' style="opacity:0.25;pointer-events:none"' : '') + '>';
+                    html += '<div class="t2-header' + t2Active + '" data-t2-toggle="' + sub2.code + '" tabindex="0" role="button" aria-label="About ' + escHtml(sub2.name) + '">';
+                    html += '<span class="t2-title">' + escHtml(sub2.name) + '</span>';
+                    html += '<span class="t2-line" aria-hidden="true"></span>';
+                    html += '<span class="t2-count">' + visibleVendors.length + '</span>';
+                    html += '</div>';
+
+                    html += '<div class="vendor-grid">';
+                    for (var k2 = 0; k2 < visibleVendors.length; k2++) {
+                        html += buildCard(visibleVendors[k2], sub2.code);
+                    }
+                    html += '</div>';
+                    html += '</div>';
+                }
+                html += '</section>';
+            }
+
+            // Global empty state when zero results
+            if (totalVisible === 0) {
+                html = '<div class="landscape-empty-state">' +
+                    '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+                    '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>' +
+                    '<line x1="8" y1="11" x2="14" y2="11"/>' +
+                    '</svg>' +
+                    '<h3>No products found</h3>' +
+                    '<p>Try adjusting your search or filters.</p>' +
+                    '<button class="landscape-empty-reset-btn" id="landscape-empty-reset-btn">Reset Filters</button>' +
+                    '</div>';
+            }
+
+            root.innerHTML = html;
+
+            // Wire empty-state reset button if present
+            var emptyResetBtn = document.getElementById('landscape-empty-reset-btn');
+            if (emptyResetBtn) {
+                emptyResetBtn.addEventListener('click', resetAllFilters);
+            }
+        }
+
+        // ---- Modal ----
+        function findVendorById(vendorId, t2Code) {
+            if (!state.data) return null;
+            // Fast path: if a specific T2 is requested, scan only that subcategory
+            if (t2Code && state.data) {
+                for (var i = 0; i < state.data.categories.length; i++) {
+                    var cat = state.data.categories[i];
+                    for (var j = 0; j < cat.subcategories.length; j++) {
+                        var sub = cat.subcategories[j];
+                        if (sub.code === t2Code) {
+                            for (var k = 0; k < sub.vendors.length; k++) {
+                                if (sub.vendors[k].vendor_id === vendorId) {
+                                    return { vendor: sub.vendors[k], t1: cat, t2: sub };
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            // Fallback: use the pre-built map (first occurrence)
+            return vendorById[vendorId] || null;
+        }
+
+        function openModal(vendorId, t2Code) {
+            var found = findVendorById(vendorId, t2Code);
+            if (!found) return;
+            var vendor = found.vendor;
+            var t1 = found.t1;
+            var t2 = found.t2;
+            var primary = getPrimaryProduct(vendor);
+            var productName = primary ? primary.product_name : vendor.name;
+            var tier = getPrimaryTier(vendor);
+            var seg = getSegment(vendor);
+            var hasMcp = primary && primary.mcp_enabled;
+            var description = (primary && primary.description) ? primary.description : '';
+
+            var logoHtml;
+            if (vendor.logo_url) {
+                var logoSrc = vendor.logo_url.charAt(0) === '/' ? BASE_URL + vendor.logo_url : vendor.logo_url;
+                logoHtml = '<img class="modal-vendor-logo" src="' + logoSrc + '" alt="' + escHtml(vendor.name) + '" width="64" height="48">';
+            } else {
+                logoHtml = '<div class="modal-vendor-initials">' + escHtml(initials(vendor.name)) + '</div>';
+            }
+
+            var descHtml = description
+                ? '<p class="modal-description">' + escHtml(description) + '</p>'
+                : '';
+
+            var mcpHtml = hasMcp ? '<div class="modal-meta-item"><div class="modal-meta-label">Integration</div><div class="modal-meta-value"><span class="mcp-badge">MCP Enabled</span></div></div>' : '';
+
+            var hqParts = [vendor.hq_city, vendor.hq_state].filter(Boolean);
+            var hqHtml = hqParts.length
+                ? '<div class="modal-meta-item"><div class="modal-meta-label">HQ</div><div class="modal-meta-value">' + escHtml(hqParts.join(', ')) + '</div></div>'
+                : '';
+
+            var foundedHtml = vendor.founded_year
+                ? '<div class="modal-meta-item"><div class="modal-meta-label">Founded</div><div class="modal-meta-value">' + escHtml(String(vendor.founded_year)) + '</div></div>'
+                : '';
+
+            var homepageHtml = vendor.homepage_url
+                ? '<a class="modal-link" href="' + escHtml(vendor.homepage_url) + '" target="_blank" rel="noopener">Visit Website &#x2197;</a>'
+                : '';
+
+            var acquiredByHtml = (vendor.status === 'deprecated' && vendor.acquirer_name)
+                ? '<div class="modal-meta-item"><div class="modal-meta-label">Acquired by</div><div class="modal-meta-value">' + escHtml(vendor.acquirer_name) + '</div></div>'
+                : '';
+
+            var competitorIds = (primary && primary.competitor_ids && primary.competitor_ids.length) ? primary.competitor_ids : [];
+            var integrationIds = (primary && primary.integration_ids && primary.integration_ids.length) ? primary.integration_ids : [];
+
+            var compDisabled = competitorIds.length === 0 ? ' disabled title="No competitors tracked"' : '';
+            var ecoDisabled = integrationIds.length === 0 ? ' disabled title="No integrations tracked"' : '';
+
+            var actionRow = '<div class="modal-action-row">' +
+                '<button class="modal-action-btn modal-btn-competitors" id="modal-btn-competitors"' + compDisabled + '>&#x2694; Show Competitors</button>' +
+                '<button class="modal-action-btn modal-btn-ecosystem" id="modal-btn-ecosystem"' + ecoDisabled + '>&#x1F517; Show Ecosystem</button>' +
+                '</div>';
+
+            var html =
+                logoHtml +
+                '<h2 class="modal-product-name" id="modal-product-name">' + escHtml(productName) + '</h2>' +
+                '<p class="modal-vendor-name">by ' + escHtml(vendor.name) + '</p>' +
+                descHtml +
+                actionRow +
+                '<div class="modal-meta-grid">' +
+                    '<div class="modal-meta-item"><div class="modal-meta-label">Category</div><div class="modal-meta-value">' + escHtml(t1.name) + '</div></div>' +
+                    '<div class="modal-meta-item"><div class="modal-meta-label">Subcategory</div><div class="modal-meta-value">' + escHtml(t2.name) + '</div></div>' +
+                    (tier ? '<div class="modal-meta-item"><div class="modal-meta-label">Adoption Tier</div><div class="modal-meta-value"><span class="modal-tier-badge modal-tier-badge-' + tier + '" style="background:' + TIER_COLORS[tier] + '">' + escHtml(TIER_LABELS[tier]) + '</span></div></div>' : '') +
+                    '<div class="modal-meta-item"><div class="modal-meta-label">Segment</div><div class="modal-meta-value">' + escHtml(MODAL_SEG_LABELS[seg] || seg) + '</div></div>' +
+                    hqHtml +
+                    foundedHtml +
+                    acquiredByHtml +
+                    mcpHtml +
+                '</div>' +
+                homepageHtml;
+
+            var modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = html;
+            document.getElementById('modal-backdrop').classList.add('open');
+            document.getElementById('product-modal').classList.add('open');
+            document.getElementById('modal-backdrop').removeAttribute('aria-hidden');
+            document.body.style.overflow = 'hidden';
+            // Reset scroll after modal is visible (deferred so display:none→flex transition completes)
+            requestAnimationFrame(function() { modalContent.scrollTop = 0; });
+
+            // Wire action buttons
+            var compBtn = document.getElementById('modal-btn-competitors');
+            if (compBtn && !compBtn.disabled) {
+                compBtn.addEventListener('click', function() {
+                    closeModal();
+                    // Reset all other filters before applying competitor filter
+                    state.search = '';
+                    var searchInput = document.getElementById('vendor-search');
+                    if (searchInput) searchInput.value = '';
+                    state.segment = 'all';
+                    state.activeTier = null;
+                    state.activeT1 = null;
+                    state.activeT2 = null;
+                    state.ecosystemFilter = null;
+                    state.ecosystemSourceT2s = null;
+                    syncT1Buttons();
+                    syncTierButtons();
+                    syncSegmentButtons();
+                    state.competitorFilter = { productName: productName, ids: competitorIds, sourceVendorId: vendor.vendor_id };
+                    state.competitorSourceT2s = new Set(t2sByProductId[primary.product_id] || []);
+                    update();
+                    scrollToGrid();
+                });
+            }
+            var ecoBtn = document.getElementById('modal-btn-ecosystem');
+            if (ecoBtn && !ecoBtn.disabled) {
+                ecoBtn.addEventListener('click', function() {
+                    closeModal();
+                    // Reset all other filters before applying ecosystem filter
+                    state.search = '';
+                    var searchInput = document.getElementById('vendor-search');
+                    if (searchInput) searchInput.value = '';
+                    state.segment = 'all';
+                    state.activeTier = null;
+                    state.activeT1 = null;
+                    state.activeT2 = null;
+                    state.competitorFilter = null;
+                    state.competitorSourceT2s = null;
+                    syncT1Buttons();
+                    syncTierButtons();
+                    syncSegmentButtons();
+                    state.ecosystemFilter = { productName: productName, ids: integrationIds, sourceVendorId: vendor.vendor_id };
+                    state.ecosystemSourceT2s = new Set(t2sByProductId[primary.product_id] || []);
+                    update();
+                    scrollToGrid();
+                });
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modal-backdrop').classList.remove('open');
+            document.getElementById('product-modal').classList.remove('open');
+            document.getElementById('modal-backdrop').setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('modal-close').addEventListener('click', closeModal);
+        document.getElementById('modal-backdrop').addEventListener('click', closeModal);
+
+        // ---- Disclaimer modal ----
+        function openDisclaimerModal() {
+            document.getElementById('disclaimer-backdrop').classList.add('open');
+            document.getElementById('disclaimer-modal').classList.add('open');
+            document.getElementById('disclaimer-backdrop').removeAttribute('aria-hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeDisclaimerModal() {
+            document.getElementById('disclaimer-backdrop').classList.remove('open');
+            document.getElementById('disclaimer-modal').classList.remove('open');
+            document.getElementById('disclaimer-backdrop').setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('disclaimer-btn').addEventListener('click', function(e) {
+            e.stopPropagation(); // prevent filter panel toggle
+            openDisclaimerModal();
+        });
+        document.getElementById('disclaimer-close').addEventListener('click', closeDisclaimerModal);
+        document.getElementById('disclaimer-backdrop').addEventListener('click', closeDisclaimerModal);
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') { closeModal(); closeCategoryModal(); closeDisclaimerModal(); }
+        });
+
+        // ---- Update active filter chips ----
+        function renderFilterBar() {
+            var bar = document.getElementById('filter-bar');
+            var chips = '';
+
+            if (state.competitorFilter !== null) {
+                chips += '<span class="filter-chip filter-chip-competitors">Competitors of ' + escHtml(state.competitorFilter.productName) + '<button class="filter-chip-dismiss" data-dismiss="competitors" aria-label="Clear competitors filter">&times;</button></span>';
+            }
+            if (state.ecosystemFilter !== null) {
+                chips += '<span class="filter-chip filter-chip-ecosystem">Ecosystem: ' + escHtml(state.ecosystemFilter.productName) + '<button class="filter-chip-dismiss" data-dismiss="ecosystem" aria-label="Clear ecosystem filter">&times;</button></span>';
+            }
+            if (state.activeT2) {
+                var label = t2LabelByCode[state.activeT2] || state.activeT2;
+                chips += '<span class="filter-chip">' + escHtml(label) + '<button class="filter-chip-dismiss" data-dismiss="t2" aria-label="Clear subcategory filter">&times;</button></span>';
+            }
+            if (state.activeT1) {
+                var t1label = state.activeT1;
+                if (state.data) {
+                    for (var i2 = 0; i2 < state.data.categories.length; i2++) {
+                        if (state.data.categories[i2].code === state.activeT1) {
+                            t1label = state.data.categories[i2].name;
+                            break;
+                        }
+                    }
+                }
+                chips += '<span class="filter-chip">' + escHtml(t1label) + '<button class="filter-chip-dismiss" data-dismiss="t1" aria-label="Clear category filter">&times;</button></span>';
+            }
+            if (state.activeTier !== null) {
+                chips += '<span class="filter-chip">' + escHtml(TIER_LABELS[state.activeTier]) + '<button class="filter-chip-dismiss" data-dismiss="tier" aria-label="Clear tier filter">&times;</button></span>';
+            }
+            if (state.segment !== 'all') {
+                var segChipLabel = { banks: 'Banks Only', credit_unions: 'Credit Unions Only', both: 'Both' }[state.segment] || state.segment;
+                chips += '<span class="filter-chip">Segment: ' + escHtml(segChipLabel) + '<button class="filter-chip-dismiss" data-dismiss="segment" aria-label="Clear segment filter">&times;</button></span>';
+            }
+            if (state.search) {
+                chips += '<span class="filter-chip">Search: ' + escHtml(state.search) + '<button class="filter-chip-dismiss" data-dismiss="search" aria-label="Clear search">&times;</button></span>';
+            }
+            bar.innerHTML = chips;
+
+            bar.querySelectorAll('.filter-chip-dismiss').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var type = btn.dataset.dismiss;
+                    if (type === 'competitors') { state.competitorFilter = null; state.competitorSourceT2s = null; }
+                    if (type === 'ecosystem') { state.ecosystemFilter = null; state.ecosystemSourceT2s = null; }
+                    if (type === 't2') state.activeT2 = null;
+                    if (type === 't1') { state.activeT1 = null; syncT1Buttons(); }
+                    if (type === 'tier') { state.activeTier = null; syncTierButtons(); }
+                    if (type === 'segment') { state.segment = 'all'; syncSegmentButtons(); }
+                    if (type === 'search') {
+                        state.search = '';
+                        document.getElementById('vendor-search').value = '';
+                    }
+                    update();
+                });
+            });
+        }
+
+        function update() {
+            render();
+            renderFilterBar();
+            updateFilterSummary();
+        }
+
+        // ---- Scroll viewport to top of vendor grid ----
+        function scrollToGrid() {
+            var filterBar = document.getElementById('category-filter-bar');
+            if (filterBar) {
+                // Use offsetTop (natural document position) — getBoundingClientRect().top
+                // returns the sticky-clamped viewport position (always 60px once stuck),
+                // which makes the computed scroll target equal to the current position.
+                var NAVBAR_H = 60;
+                window.scrollTo({ top: Math.max(0, filterBar.offsetTop - NAVBAR_H - 8), behavior: 'smooth' });
+            }
+        }
+
+        // ---- Reset all filters to defaults ----
+        function resetAllFilters() {
+            state.search = '';
+            state.segment = 'all';
+            state.activeTier = null;
+            state.activeT1 = null;
+            state.activeT2 = null;
+            state.competitorFilter = null;
+            state.ecosystemFilter = null;
+            state.competitorSourceT2s = null;
+            state.ecosystemSourceT2s = null;
+            var searchInput = document.getElementById('vendor-search');
+            if (searchInput) searchInput.value = '';
+            syncT1Buttons();
+            syncTierButtons();
+            syncSegmentButtons();
+            update();
+        }
+
+        // ---- Populate T1 filter buttons ----
+        function buildT1Buttons() {
+            var controls = document.getElementById('t1-filter-controls');
+            controls.innerHTML = '';
+
+            var allBtn = document.createElement('button');
+            allBtn.className = 'cat-filter-btn active';
+            allBtn.dataset.t1 = 'all';
+            allBtn.textContent = 'All';
+            controls.appendChild(allBtn);
+
+            if (!state.data) return;
+            state.data.categories.forEach(function(cat) {
+                var btn = document.createElement('button');
+                btn.className = 'cat-filter-btn';
+                btn.dataset.t1 = cat.code;
+                btn.textContent = cat.name;
+                controls.appendChild(btn);
+            });
+
+            document.getElementById('t1-filter-row').addEventListener('click', function(e) {
+                var btn = e.target.closest('[data-t1]');
+                if (!btn) return;
+                var code = btn.dataset.t1;
+                state.activeT1 = (code === 'all') ? null : code;
+                state.activeT2 = null; // clear subcategory when T1 changes
+                syncT1Buttons();
+                update();
+                setFilterExpanded(false);
+            });
+        }
+
+        function syncT1Buttons() {
+            document.querySelectorAll('#t1-filter-row [data-t1]').forEach(function(btn) {
+                var isAll = btn.dataset.t1 === 'all';
+                btn.classList.toggle('active', isAll ? state.activeT1 === null : btn.dataset.t1 === state.activeT1);
+            });
+        }
+
+        function syncTierButtons() {
+            document.querySelectorAll('#tier-filter-row [data-tier]').forEach(function(btn) {
+                var tierVal = btn.dataset.tier;
+                var isAll = tierVal === 'all';
+                var active = isAll ? state.activeTier === null : parseInt(tierVal, 10) === state.activeTier;
+                // Remove all active classes
+                btn.className = btn.className.replace(/\s*active(?:-\d)?/g, '');
+                if (active) {
+                    if (isAll) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.add('active-' + tierVal);
+                    }
+                }
+            });
+        }
+
+        // ---- Tier filter buttons ----
+        document.getElementById('tier-filter-row').addEventListener('click', function(e) {
+            var btn = e.target.closest('[data-tier]');
+            if (!btn) return;
+            var tierVal = btn.dataset.tier;
+            state.activeTier = (tierVal === 'all') ? null : parseInt(tierVal, 10);
+            syncTierButtons();
+            update();
+            setFilterExpanded(false);
+        });
+
+        // ---- Category modal ----
+        function findCategoryByCode(code) {
+            if (!state.data) return null;
+            for (var i = 0; i < state.data.categories.length; i++) {
+                var cat = state.data.categories[i];
+                if (cat.code === code) return { cat: cat, tier: 1 };
+                for (var j = 0; j < cat.subcategories.length; j++) {
+                    if (cat.subcategories[j].code === code) return { cat: cat.subcategories[j], tier: 2, t1: cat };
+                }
+            }
+            return null;
+        }
+
+        function openCategoryModal(code) {
+            var found = findCategoryByCode(code);
+            if (!found) return;
+            var c = found.cat;
+            var eyebrow = found.tier === 2 && found.t1 ? escHtml(found.t1.name) : 'Category';
+            var desc = c.description || c.scope || '';
+            var aiOpps = c.ai_opportunities || '';
+
+            var descSection = desc
+                ? '<div class="cat-modal-section"><div class="cat-modal-label">Overview</div><p class="cat-modal-text">' + escHtml(desc) + '</p></div>'
+                : '';
+            var aiSection = aiOpps
+                ? '<div class="cat-modal-section"><div class="cat-modal-label">AI Opportunities</div><p class="cat-modal-text">' + escHtml(aiOpps) + '</p></div>'
+                : '';
+
+            var html =
+                '<div class="cat-modal-eyebrow">' + eyebrow + '</div>' +
+                '<h2 class="cat-modal-title" id="cat-modal-title">' + escHtml(c.name) + '</h2>' +
+                descSection +
+                aiSection +
+                '<button class="cat-modal-show-btn" id="cat-modal-show-btn" data-code="' + escHtml(code) + '" data-tier="' + found.tier + '">Show Vendors &#x2192;</button>';
+
+            document.getElementById('cat-modal-content').innerHTML = html;
+            document.getElementById('cat-modal-backdrop').classList.add('open');
+            document.getElementById('cat-modal').classList.add('open');
+            document.getElementById('cat-modal-backdrop').removeAttribute('aria-hidden');
+            document.body.style.overflow = 'hidden';
+
+            document.getElementById('cat-modal-show-btn').addEventListener('click', function() {
+                var tier = parseInt(this.dataset.tier, 10);
+                closeCategoryModal();
+                if (tier === 2) {
+                    state.activeT2 = code;
+                    state.activeT1 = null;
+                } else {
+                    state.activeT1 = code;
+                    state.activeT2 = null;
+                }
+                syncT1Buttons();
+                update();
+            });
+        }
+
+        function closeCategoryModal() {
+            document.getElementById('cat-modal-backdrop').classList.remove('open');
+            document.getElementById('cat-modal').classList.remove('open');
+            document.getElementById('cat-modal-backdrop').setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('cat-modal-close').addEventListener('click', closeCategoryModal);
+        document.getElementById('cat-modal-backdrop').addEventListener('click', closeCategoryModal);
+
+        // ---- Event delegation for card clicks and T1/T2 headers in grid ----
+        document.getElementById('landscape-root').addEventListener('click', function(e) {
+            var card = e.target.closest('.vendor-card:not(.defunct)');
+            if (card) {
+                openModal(parseInt(card.dataset.vendorId, 10), card.dataset.t2 || null);
+                return;
+            }
+            var t2btn = e.target.closest('[data-t2-toggle]');
+            if (t2btn) { openCategoryModal(t2btn.dataset.t2Toggle); return; }
+            var t1btn = e.target.closest('[data-t1-toggle]');
+            if (t1btn) { openCategoryModal(t1btn.dataset.t1Toggle); return; }
+        });
+
+        // Keyboard accessibility for grid headers
+        document.getElementById('landscape-root').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                var t2btn = e.target.closest('[data-t2-toggle]');
+                if (t2btn) { e.preventDefault(); t2btn.click(); }
+                var t1btn = e.target.closest('[data-t1-toggle]');
+                if (t1btn) { e.preventDefault(); t1btn.click(); }
+            }
+        });
+
+        // ---- Segment filter row (inside filter panel) ----
+        document.getElementById('segment-filter-row').addEventListener('click', function(e) {
+            var btn = e.target.closest('[data-segment]');
+            if (!btn) return;
+            state.segment = btn.dataset.segment;
+            syncSegmentButtons();
+            update();
+            setFilterExpanded(false);
+        });
+
+        function syncSegmentButtons() {
+            document.querySelectorAll('#segment-filter-row [data-segment]').forEach(function(b) {
+                b.classList.toggle('active', b.dataset.segment === state.segment);
+            });
+        }
+
+        // ---- Search input — searches data array, not DOM ----
+        var searchDebounce;
+        document.getElementById('vendor-search').addEventListener('input', function(e) {
+            clearTimeout(searchDebounce);
+            var val = e.target.value.trim().toLowerCase();
+            searchDebounce = setTimeout(function() {
+                state.search = val;
+                update();
+            }, 180);
+        });
+
+        // ---- Apply button (collapses filter panel) ----
+        document.getElementById('filter-apply-btn').addEventListener('click', function() {
+            setFilterExpanded(false);
+        });
+
+        // ---- Collapsible filter bar ----
+        var filterToggleBar = document.getElementById('filter-toggle-bar');
+        var filterPanel = document.getElementById('filter-panel');
+        var LS_KEY = 'fi-filters-expanded';
+
+        function isDesktop() { return window.innerWidth >= 1024; }
+
+        function getStoredExpanded() {
+            var stored = localStorage.getItem(LS_KEY);
+            if (stored === null) return false; // default: always collapsed on page load
+            return stored === 'true';
+        }
+
+        function setFilterExpanded(expanded) {
+            filterPanel.classList.toggle('expanded', expanded);
+            filterToggleBar.setAttribute('aria-expanded', String(expanded));
+            localStorage.setItem(LS_KEY, String(expanded));
+        }
+
+        // ---- Pulse: stop on timeout, click, or scroll past hero ----
+        var _pulseTimer = null;
+        function stopPulse() {
+            filterToggleBar.classList.remove('pulsing');
+            if (_pulseTimer) { clearTimeout(_pulseTimer); _pulseTimer = null; }
+        }
+
+        filterToggleBar.addEventListener('click', function(e) {
+            stopPulse();
+            var nowExpanded = filterPanel.classList.contains('expanded');
+            setFilterExpanded(!nowExpanded);
+        });
+
+        document.getElementById('filter-reset-btn').addEventListener('click', function() {
+            resetAllFilters();
+        });
+
+        filterToggleBar.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                filterToggleBar.click();
+            }
+        });
+
+        // Initialize from localStorage / viewport default
+        var _initExpanded = getStoredExpanded();
+        setFilterExpanded(_initExpanded);
+
+        // Pulse the filter toggle when starting collapsed
+        if (!_initExpanded) {
+            filterToggleBar.classList.add('pulsing');
+            _pulseTimer = setTimeout(stopPulse, 10000);
+            // Stop pulse once user scrolls past the hero
+            var _heroEl = document.querySelector('.landscape-hero');
+            if (_heroEl && window.IntersectionObserver) {
+                var _heroObs = new IntersectionObserver(function(entries) {
+                    if (!entries[0].isIntersecting) { stopPulse(); _heroObs.disconnect(); }
+                }, { threshold: 0 });
+                _heroObs.observe(_heroEl);
+            }
+        }
+
+        // Show/hide the Reset button based on active filters
+        function updateFilterSummary() {
+            var hasNonDefault = (
+                state.competitorFilter !== null ||
+                state.ecosystemFilter !== null ||
+                state.activeTier !== null ||
+                state.activeT1 !== null ||
+                state.activeT2 !== null ||
+                state.segment !== 'all' ||
+                !!state.search
+            );
+            var resetBtn = document.getElementById('filter-reset-btn');
+            if (resetBtn) {
+                resetBtn.style.display = hasNonDefault ? '' : 'none';
+            }
+        }
+
+        // Initialize summary immediately so toggle bar isn't blank on load
+        updateFilterSummary();
+
+        // ---- Navbar scroll ----
+        var navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', function() {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        }, { passive: true });
+
+        // ---- Mobile menu toggle ----
+        var mobileToggle = document.querySelector('.mobile-toggle');
+        var navMenu = document.querySelector('.nav-menu');
+        mobileToggle.addEventListener('click', function() {
+            mobileToggle.classList.toggle('active');
+            navMenu.classList.toggle('open');
+        });
+        navMenu.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('open');
+                mobileToggle.classList.remove('active');
+            });
+        });
+
+        // ---- Load data ----
+        var dataUrl = (BASE_URL + '/fi-landscape-data.json').replace(/\/\//g, '/');
+        fetch(dataUrl)
+            .then(function(r) {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
+            })
+            .then(function(data) {
+                state.data = data;
+                buildProductMaps();
+
+                var subhead = document.getElementById('hero-subhead');
+                subhead.textContent = '400+ vendors. 500+ products. Every AI solution in the community banking and credit union ecosystem.';
+
+                var metaEl = document.getElementById('meta-line');
+                var d = new Date(data.meta.generated_at);
+                var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                metaEl.textContent = 'Last updated: ' + months[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
+
+                buildT1Buttons();
+                update();
+            })
+            .catch(function(err) {
+                console.error('Failed to load landscape data:', err);
+                document.getElementById('hero-subhead').textContent = '400+ vendors. 500+ products. Every AI solution in the community banking and credit union ecosystem.';
+                document.getElementById('meta-line').textContent = '';
+                document.getElementById('landscape-root').innerHTML =
+                    '<p style="color:var(--text-muted);font-style:italic;">Could not load landscape data. Please refresh the page.</p>';
+            });
+
+    })();
+    </script>
+</body>
+</html>
