@@ -116,6 +116,82 @@ a:hover { color: var(--orange-light); }
 .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
 /* ==========================================
+   Path Chooser
+   ========================================== */
+@keyframes path-chooser-sheen {
+    0%   { transform: translateX(-100%) skewX(-15deg); }
+    100% { transform: translateX(400%) skewX(-15deg); }
+}
+.path-chooser {
+    background: linear-gradient(100deg, #0f1f0f 0%, #1c321c 60%, #0f1f0f 100%);
+    padding: calc(64px + 1.25rem) 0 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    position: relative;
+    overflow: hidden;
+}
+.path-chooser::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 30%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.055), transparent);
+    animation: path-chooser-sheen 4s ease-in-out infinite;
+    pointer-events: none;
+}
+.path-chooser .container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+.path-chooser-label {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.path-tiles {
+    display: flex;
+    gap: 0.625rem;
+    flex-wrap: wrap;
+}
+.path-tile {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.1rem;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: var(--radius-md);
+    color: rgba(255,255,255,0.88);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition);
+    white-space: nowrap;
+    line-height: 1;
+}
+.path-tile:hover {
+    background: rgba(255,105,0,0.18);
+    border-color: var(--orange);
+    color: #fff;
+    transform: translateY(-1px);
+}
+.path-arr { color: var(--orange); }
+@media (max-width: 640px) {
+    .path-chooser { padding: calc(64px + 1rem) 0 1rem; }
+    .path-chooser-label { display: none; }
+    .path-chooser .container { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .path-tiles { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .path-tile { justify-content: center; white-space: nowrap; text-align: center; font-size: 0.72rem; padding: 0.55rem 0.25rem; min-width: 0; width: 100%; overflow: hidden; }
+}
+
+/* ==========================================
    Buttons
    ========================================== */
 .btn-primary, .btn-primary-large, .btn-outline, .btn-ghost {
@@ -150,7 +226,7 @@ a:hover { color: var(--orange-light); }
    Hero
    ========================================== */
 .hero {
-    padding: calc(6rem + 60px) 0 var(--space-xl);
+    padding: 5rem 0 var(--space-xl);
     background: linear-gradient(170deg, var(--cream) 0%, var(--warm-white) 60%);
     position: relative;
     overflow: hidden;
@@ -445,11 +521,14 @@ a:hover { color: var(--orange-light); }
     border: 1px solid rgba(26, 58, 46, 0.18);
     text-align: center;
     transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .industry-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
 .industry-icon { font-size: 2rem; margin-bottom: var(--space-sm); }
 .industry-card h3 { font-family: var(--font-sans); font-weight: 700; font-size: 1rem; margin-bottom: var(--space-xs); }
-.industry-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0; }
+.industry-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0; flex: 1; }
 .industry-link { display: inline-block; margin-top: var(--space-sm); font-size: 0.85rem; font-weight: 600; }
 .btn-industry {
     display: inline-block;
@@ -605,7 +684,8 @@ a:hover { color: var(--orange-light); }
 }
 
 @media (max-width: 768px) {
-    .hero { padding-top: calc(5rem + 40px); }
+    .hero { padding-top: 3rem; }
+    body.path-dismissed .hero { padding-top: calc(3rem + 56px); }
     .hero-visual { display: none; }
     .badge-line { display: block; }
     .badge-sep { display: none; }
