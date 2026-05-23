@@ -4,13 +4,14 @@
 # Site settings
 title: Upstate AI
 description: AI Strategy Consulting for Your Business
-url: https://nichols-ai-assistant.github.io/upstate-ai-dev
-baseurl: /upstate-ai-dev
+url: https://up-state-ai.com
+baseurl: ""
 
 # Build settings
 markdown: kramdown
 plugins:
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Exclude from processing
 exclude:
