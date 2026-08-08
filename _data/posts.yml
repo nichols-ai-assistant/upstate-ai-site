@@ -1,6 +1,14 @@
 # Blog post registry — sorted by date descending.
 # Add new posts to the top. Homepage auto-displays the first 3.
 
+- title: "Let Somebody Else Do It"
+  url: "blog/forward-deployed-engineers-community-banks-2026-08-07"
+  category: "AI Strategy"
+  date: "August 7, 2026"
+  sort_date: 2026-08-07
+  excerpt: "The hard part of AI in banking is no longer the model, it is integration. FIS and Fiserv have embedded their AI partners' forward-deployed engineers inside the platform layer, which changes what community banks can buy and who makes their design decisions. Here is what to watch before the feature turns on."
+  read_time: "5 min read"
+
 - title: "The Breach Already Happened. Apple Just Poured Gasoline on It."
   url: "blog/siri-semantic-index-banks-credit-unions-2026-07-16"
   category: "Governance"
@@ -24,6 +32,7 @@
   sort_date: 2026-06-24
   excerpt: "Stanford's economics of AI course brought together Altimeter Capital, Databricks, and Crusoe Energy to explain why AI hasn't moved your productivity numbers yet — and what rewiring (not augmenting) actually looks like."
   read_time: "10 min read"
+
 - title: "Building a Synthetic Financial Crime Simulator: The Engineering Behind Santander's GenFraud Graph"
   url: "blog/santander-genfraude-graph-aml-june-2026"
   category: "AI Engineering"
